@@ -1,0 +1,115 @@
+<div style="width: 500px;">
+
+</div>
+
+
+<mat-card style="width: 750px; margin: 10px">
+    <mat-card-title style="display: flex; justify-content: space-between; align-items: center">
+        Tests
+        <button mat-icon-button (click)="ajoutTest()" matTooltip="Ajouter un test">
+            <span class="material-symbols-outlined">add_circle</span>
+        </button>
+    </mat-card-title>
+
+    <form class="example-form" #addtest="ngForm" (ngSubmit)="addTest()" *ngIf="addtest"
+          style=" padding: 20px; width: 820px;">
+        <div>
+            <div style="display: flex; width: 450px; justify-content: space-between">
+                <h2>Intitulé</h2>
+                <input style="width: 200px" type="text" class="form-control" aria-label="Intitulé"
+                       aria-describedby="basic-addon1"
+                       name="titre" [(ngModel)]="test.titre" required>
+            </div>
+            <div style="display: flex; width: 450px; justify-content: space-between; align-items: center">
+                <h2>Durée</h2>
+                <div style="display: flex;align-items: center;justify-content: left">
+                    <input style="width: 200px" type="text" class="form-control" aria-label="Durée"
+                       aria-describedby="basic-addon1"
+                       type="number" name="duree" [(ngModel)]="test.duree" required>
+                    <b style="margin-left: 10px">h</b>
+                </div>
+            </div>
+            <div style="display: flex; width: 450px; justify-content: space-between; align-items: center">
+                <h2>Score minimum</h2>
+                <div style="display: flex;align-items: center;justify-content: left">
+                    <input style="width: 200px" type="text" class="form-control" aria-label="Score minimum"
+                           aria-describedby="basic-addon1"
+                           type="number" name="score_min" [(ngModel)]="test.score_min" required>
+                    <b style="margin-left: 10px"> / 100</b>
+                </div>
+            </div>
+        </div>
+
+        <form [formGroup]="form">
+            <div formArrayName="question">
+                <div
+                        *ngFor="let questiongroup of question?.controls; let i = index"
+                        [formGroupName]="i"
+                >
+                    <h2>Question {{i + 1}}</h2>
+                    <div class="input-group" style="width: 600px">
+                        <input type="text" class="form-control" placeholder="Enancé" aria-label="Username"
+                               aria-describedby="basic-addon1"
+                               formControlName="enance" required>
+                    </div>
+                    <div style="display: flex; margin-top: 10px">
+                        <div class="input-group" style="width: 150px">
+                            <input type="text" class="form-control" aria-label="Reponce vrai"
+                                   aria-describedby="basic-addon1"
+                                   formControlName="rep_vrai" placeholder="Reponce vrai" required>
+                        </div>
+                        <div class="input-group" style="width: 150px">
+                            <input type="text" class="form-control" aria-label="Reponce faux 1"
+                                   aria-describedby="basic-addon1"
+                                   formControlName="rep_faux1" placeholder="Reponce faux 1" required>
+                        </div>
+                        <div class="input-group" style="width: 150px">
+                            <input type="text" class="form-control" aria-label="Reponce faux 2"
+                                   aria-describedby="basic-addon1"
+                                   formControlName="rep_faux2" placeholder="Reponce faux 2" required>
+                        </div>
+                        <div class="input-group" style="width: 150px">
+                            <input type="text" class="form-control" aria-label="Reponce faux 3"
+                                   aria-describedby="basic-addon1"
+                                   formControlName="rep_faux3" placeholder="Reponce faux 3" required>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button style="margin-top: 10px" mat-flat-button color="primary" (click)="addquestion()"
+                    [disabled]="form.invalid">Ajouter Question
+            </button>
+
+        </form>
+
+        <div style="margin-top: 10px">
+            <button mat-flat-button color="primary" [disabled]="addtest.invalid || form.invalid"
+                    type="submit">Ajouter Test
+            </button>
+        </div>
+
+    </form>
+
+    <div style="display: flex;flex-wrap: wrap;">
+        <mat-card style="margin: 5px; width: max-content;height: max-content;display: flex;align-items: center; justify-content: space-between"
+                  *ngFor="let test of tests">
+            <mat-card-title style="color:#3f51b4;">{{test.titre}}</mat-card-title>
+            <div>
+                <button mat-icon-button color="primary" (click)="deleteTest(test.id)">
+                    <mat-icon>
+                        <span class="material-symbols-outlined">delete</span>
+                    </mat-icon>
+                </button>
+                <button mat-icon-button color="primary" (click)="getDetailsTest(test.id)">
+                    <mat-icon>
+                        <span class="material-symbols-outlined">open_in_new</span>
+                    </mat-icon>
+                </button>
+            </div>
+        </mat-card>
+    </div>
+
+</mat-card>

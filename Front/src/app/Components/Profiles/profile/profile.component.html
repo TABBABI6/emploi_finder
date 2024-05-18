@@ -1,0 +1,163 @@
+<div style="display: flex;flex-wrap: wrap; padding: 20px; width: 820px;margin-top: 50px">
+    <mat-card style="width: 750px;height: max-content;display: flex; justify-content: space-between;align-items: center;padding-right: 20px;margin: 10px;">
+        <mat-card-title>Profile</mat-card-title>
+        <div style="display: flex; align-items: center">
+            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Parametres du compte" *ngIf="isLogedIn() && proprietaireCompte()">
+                <span class="material-symbols-outlined">manage_accounts</span>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item style="display: flex;align-items: center;" (click)="openDialog()">
+                    <span class="material-symbols-outlined">edit</span>
+                    <span>Modifier</span>
+                </button>
+
+                <button mat-menu-item style="display: flex;align-items: center;" *ngIf="role=='Condidat'" (click)="notificationUpdate()">
+                    <span class="material-symbols-outlined">notifications</span>
+                    Notifications
+                    <mat-slide-toggle color="primary" style="margin-left: 10px" [checked]="user.mailNotifications"></mat-slide-toggle>
+                </button>
+
+                <button mat-menu-item style="display: flex;align-items: center;" (click)="validerSuppressionProfil()">
+                    <span class="material-symbols-outlined">delete</span>
+                    <span>Supprimer le compte</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-card>
+
+    <mat-card class="example-card" style="text-align: center; margin: 10px; width: max-content">
+        <img *ngIf="user.image.file.name != ''" [src]="user.image.url" style="width: 183px; height: 183px;border-radius: 50%;position: absolute" alt=" ">
+        <img  src="../../../../assets/imgProfile.webp" style="width: 180px; height: 180px;border-radius: 50%;">
+
+        <label class="lab" *ngIf="isLogedIn() && proprietaireCompte()">
+            <mat-icon><span class="material-symbols-outlined" style="position: absolute; top: 160px; right: 10px" matTooltip="Changer la photo du profil">edit_square</span></mat-icon>
+            <input class="inputTag" type="file" required name="image" accept="image/*" value="Ajout"  (change)="onFileSelected($event)">
+        </label>
+        <mat-card-content>
+            <br>
+            <mat-card-title  style="text-transform: capitalize;">{{user.nom}} {{user.prenom}}</mat-card-title>
+            <mat-card-subtitle *ngIf="role == 'Condidat'"  style="text-transform: capitalize;">{{user.fonction}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="role == 'Recruteur'" style="align-items: center; display: flex;margin-left: 50px ;text-transform: capitalize;">
+                <span class="material-symbols-outlined">call</span>
+                {{user.num_tel}}
+            </mat-card-subtitle>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card style="width: 510px; margin: 10px">
+        <mat-card style="margin: 5px"><table style="width: 400px"><tr><td>Nom</td><td style="text-transform: capitalize;">{{user.nom}}</td></tr></table></mat-card>
+        <mat-card style="margin: 5px"><table style="width: 400px"><tr><td>Prénom</td><td style="text-transform: capitalize;">{{user.prenom}}</td></tr></table></mat-card>
+        <mat-card style="margin: 5px"><table style="width: 400px"><tr><td>Date de naissance</td><td>{{user.date_naissance}}</td></tr></table></mat-card>
+        <mat-card style="margin: 5px"><table style="width: 400px"><tr><td>Mail</td><td>{{user.mail}}</td></tr></table></mat-card>
+        <mat-card style="margin: 5px"><table style="width: 400px"><tr><td>Adresse</td><td style="text-transform: capitalize;">{{user.adresse}}</td></tr></table></mat-card>
+    </mat-card>
+
+    <app-competances  *ngIf="role == 'Condidat'"></app-competances>
+
+    <app-formations *ngIf="role == 'Condidat'"></app-formations>
+
+    <app-postulation-candidat
+            *ngIf="(role == 'Condidat' && isLogedIn() && proprietaireCompte()) || roleUserConnecte == 'Admin'">
+    </app-postulation-candidat>
+
+    <mat-card style="width: 750px;margin: 10px;" *ngIf="(role == 'Condidat' && isLogedIn() && proprietaireCompte()) || (roleUserConnecte == 'Admin' && role == 'Condidat')">
+        <div style="display: flex; justify-content: space-between;align-items: center">
+            <mat-card-title>Documents</mat-card-title>
+
+            <button mat-icon-button [matMenuTriggerFor]="menuDoc" matTooltip="Ajouter un document"
+                    *ngIf="isLogedIn() && proprietaireCompte() && (!user.cv || !user.lettre_motivation)">
+                <span class="material-symbols-outlined">add_circle</span>
+            </button>
+            <mat-menu #menuDoc="matMenu">
+                <label mat-menu-item *ngIf="!user.cv" class="lab" style="display: flex; align-items: center;margin-bottom: 0; margin-right: 7px">
+                    <span>CV</span>
+                    <input class="inputTag" name="cv" type="file" accept="application/pdf" (change)="addCv($event)"/>
+                </label>
+
+                <label mat-menu-item *ngIf="!user.lettre_motivation" class="lab" style="display: flex; align-items: center;margin-bottom: 0; margin-right: 7px">
+                    <span>Lettre de motivation</span>
+                    <input class="inputTag" name="lettre_motivation" accept="application/pdf" type="file" (change)="addLettreMotivation($event)"/>
+                </label>
+
+            </mat-menu>
+        </div>
+
+        <div style="display: flex; justify-content: space-around">
+            <mat-card style="width: max-content;height: max-content; margin: 10px"
+                      *ngIf="user.cv">
+
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                    <mat-card-title style="color: #3f51b4">CV</mat-card-title>
+                    <div style="display: flex; align-items: center; justify-content: right;">
+
+                        <label class="lab"
+                               *ngIf="role == 'Condidat' && isLogedIn() && proprietaireCompte()"
+                               style="display: flex; align-items: center;margin-bottom: 0; margin-left: 7px; margin-right: 7px">
+                            <mat-icon color="primary"><span matTooltip="Modifier" class="material-symbols-outlined">edit</span></mat-icon>
+                            <input class="inputTag" name="cv" type="file" accept="application/pdf" (change)="updateCv($event)"/>
+                        </label>
+
+                        <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;margin-right: 2px"></div>
+
+                        <button mat-icon-button matTooltip="Ouvrir" (click)="ouvrirPdf(user.cv.url.changingThisBreaksApplicationSecurity)">
+                            <mat-icon color="primary"><span class="material-symbols-outlined">open_in_new</span></mat-icon>
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <pdf-viewer *ngIf="role == 'Condidat' && isLogedIn() && proprietaireCompte() || roleUserConnecte == 'Admin'"
+                            [src]="user.cv.url.changingThisBreaksApplicationSecurity"
+                            [render-text]="true"
+                            [original-size]="false"
+                            [show-all]="false"
+                            style="width: 270px; height: 400px;">
+                </pdf-viewer>
+
+            </mat-card>
+
+
+            <mat-card style="width: max-content;height: max-content; margin: 10px"
+                      *ngIf="user.lettre_motivation">
+
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                    <mat-card-title style="color: #3f51b4">LM</mat-card-title>
+                    <div style="display: flex; align-items: center; justify-content: right;">
+
+                        <label class="lab"
+                               *ngIf="role == 'Condidat' && isLogedIn() && proprietaireCompte()"
+                               style="display: flex; align-items: center;margin-bottom: 0; margin-left: 7px; margin-right: 7px">
+                            <mat-icon color="primary"><span matTooltip="Modifier" class="material-symbols-outlined">edit</span></mat-icon>
+                            <input class="inputTag" name="lettre_motivation" accept="application/pdf" type="file" (change)="updateLm($event)"/>
+                        </label>
+
+                        <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;margin-right: 2px"></div>
+
+                        <button mat-icon-button matTooltip="Ouvrir" (click)="ouvrirPdf(user.lettre_motivation.url.changingThisBreaksApplicationSecurity)">
+                            <mat-icon color="primary"><span class="material-symbols-outlined">open_in_new</span></mat-icon>
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <pdf-viewer *ngIf="role == 'Condidat' && isLogedIn() && proprietaireCompte() || roleUserConnecte == 'Admin'"
+                            [src]="user.lettre_motivation.url.changingThisBreaksApplicationSecurity"
+                            [render-text]="true"
+                            [original-size]="false"
+                            [show-all]="false"
+                            style="width: 270px; height: 400px;">
+                </pdf-viewer>
+
+            </mat-card>
+
+        </div>
+    </mat-card>
+
+    <app-offres *ngIf="role == 'Recruteur'"></app-offres>
+    <app-add-test *ngIf="role == 'Recruteur' && isLogedIn() && proprietaireCompte()"></app-add-test>
+</div>
+
+
+<h1 *ngFor="let notification of notifications">{{notification.date}}</h1>

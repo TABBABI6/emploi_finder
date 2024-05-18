@@ -1,0 +1,42 @@
+<mat-card style="width: 750px; margin: 10px">
+    <mat-card-title style="display: flex; justify-content: space-between; align-items: center">
+        Formations
+        <button mat-icon-button (click)="addFormat()" matTooltip="Ajouter une formation" *ngIf="isLogedIn() && proprietaireCompte()">
+            <span class="material-symbols-outlined">add_circle</span>
+        </button>
+    </mat-card-title>
+
+    <form class="example-form" #addFormation="ngForm" (ngSubmit)="addFormations(addFormation)" *ngIf="addformations" style="display: flex;align-items: center;margin-bottom: 10px">
+
+        <input placeholder="Formation" style="width: 200px" class="form-control form-control-sm" name="titre" [(ngModel)]="formation.titre" required/>
+
+        <input placeholder="Centre de formation" style="width: 200px; margin-left: 10px" class="form-control form-control-sm" name="centre_formation" [(ngModel)]="formation.centre_formation" required/>
+
+        <input type="date" style="width: 200px; margin-left: 10px" class="form-control form-control-sm" name="date" [(ngModel)]="formation.date" required/>
+
+        <button mat-icon-button [disabled]="addFormation.invalid" type="submit">
+            <span class="material-symbols-outlined">check_circle</span>
+        </button>
+
+    </form>
+
+    <div style="display: flex;flex-wrap: wrap;">
+        <mat-card style="margin: 5px; width: 229px;" *ngFor="let formation of candidatFormations" >
+            <div style="display: flex; align-items: center; justify-content: space-between">
+                <mat-card-title style="color: #3f51b4;text-transform: uppercase;">{{formation.titre}}</mat-card-title>
+                <div style="display: flex; align-items: center" *ngIf="isLogedIn() && proprietaireCompte()">
+                    <button mat-icon-button (click)="validerSuppression(formation.id)" matTooltip="Supprimer">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                    </button>
+                    <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                    <button mat-icon-button matTooltip="Modifier" (click)="modifier(formation.id)">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                    </button>
+                </div>
+            </div>
+            <mat-card-subtitle>{{formation.date}}</mat-card-subtitle>
+            <p style="text-transform: capitalize;">à  {{formation.centre_formation}}</p>
+        </mat-card>
+    </div>
+
+</mat-card>

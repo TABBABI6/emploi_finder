@@ -1,0 +1,18 @@
+<div style="width: 500px; text-align: center">
+
+    <h1 style="font-weight: bold; color: #2a77ba">Inscription</h1>
+
+    <div style="display: flex; justify-content: space-between">
+        <mat-card (click)="incritCandidat()" *ngIf="inscrit==''" style="width: 240px;height: 240px; cursor: pointer; text-align: center">
+            <mat-card-title>Candidat</mat-card-title>
+            <img src="../../../../assets/Candidat.png" style="width: 200px; height: 200px">
+        </mat-card>
+
+        <mat-card (click)="inscritRecruteur()" *ngIf="inscrit==''" style="width: 240px;height: 240px; cursor: pointer">
+            <mat-card-title>Recruteur</mat-card-title>
+            <img src="../../../../assets/Recruteur.png" style="width: 200px; height: 200px">
+        </mat-card>
+    </div>
+    <app-inscription-candidat *ngIf="inscrit == 'Candidat'"></app-inscription-candidat>
+    <app-inscription-recruteur *ngIf="inscrit == 'Recruteur'"></app-inscription-recruteur>
+</div>

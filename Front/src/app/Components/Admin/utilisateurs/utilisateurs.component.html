@@ -1,0 +1,123 @@
+<div style="margin-top: 100px">
+    <mat-card>
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Recruteurs">
+                <table class="table" style="margin-top: 50px">
+                    <thead style="color: #3f51b4;">
+                    <tr>
+                        <th scope="col">Nom et prénom</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Tel</th>
+                        <th scope="col">Date de naissance</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let recruteur of recruteurs | paginate: { id: 'no',itemsPerPage: itemsPerPage, currentPage: p }">
+                        <td class="align-middle">
+                            <img [src]="recruteur.image.url" style="width: 30px; height: 30px; border-radius: 50%">
+                            <b style="margin-left: 10px;text-transform: capitalize;">{{recruteur.nom}} {{recruteur.prenom}}</b>
+                        </td>
+                        <td class="align-middle">{{recruteur.mail}}</td>
+                        <td class="align-middle" style="text-transform: capitalize;">{{recruteur.adresse}}</td>
+                        <td class="align-middle">{{recruteur.num_tel}}</td>
+                        <td class="align-middle">{{recruteur.date_naissance}}</td>
+                        <td class="align-middle">
+                            <button mat-icon-button (click)="afficherProfile(recruteur.id)">
+                                <mat-icon color="primary">
+                                    <span class="material-symbols-outlined">open_in_new</span>
+                                </mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="validerSuppressionProfil(recruteur.role, recruteur.id)">
+                                <mat-icon color="primary">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="w-100 p-3">
+                    <tr>
+                        <td style="display: flex;">
+                            <label for="itpp" style="margin-right: 10px">Lignes par page</label>
+                            <select id="itpp" class="form-select"
+                                    style="width: 50px"
+                                    [(ngModel)]="itemsPerPage">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </td>
+                        <td style="text-align: right">
+                            <pagination-controls (pageChange)="p = $event" id="no" style="margin: auto"></pagination-controls>
+                        </td>
+                    </tr>
+                </table>
+                </mat-tab>
+
+
+
+
+            <mat-tab label="Candidats">
+                <table class="table" style="margin-top: 50px">
+                    <thead style="color: #3f51b4">
+                    <tr>
+                        <th scope="col">Nom et prénom</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Fonction</th>
+                        <th scope="col">Date de naissance</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let candidat of candidats | paginate: { id: 'nC',itemsPerPage: itemsPerPageC, currentPage: p }">
+                        <td class="align-middle">
+                            <img [src]="candidat.image.url" style="width: 30px; height: 30px; border-radius: 50%">
+                            <b style="margin-left: 10px;text-transform: capitalize">{{candidat.nom}} {{candidat.prenom}}</b>
+                        </td>
+                        <td class="align-middle">{{candidat.mail}}</td>
+                        <td class="align-middle" style="text-transform: capitalize">{{candidat.adresse}}</td>
+                        <td class="align-middle" style="text-transform: capitalize">{{candidat.fonction}}</td>
+                        <td class="align-middle">{{candidat.date_naissance}}</td>
+                        <td class="align-middle">
+                            <button mat-icon-button (click)="afficherProfile(candidat.id)">
+                                <mat-icon color="primary">
+                                    <span class="material-symbols-outlined">open_in_new</span>
+                                </mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="validerSuppressionProfil(candidat.role, candidat.id)">
+                                <mat-icon color="primary">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="w-100 p-3">
+                    <tr>
+                        <td style="display: flex;">
+                            <label for="itp" style="margin-right: 10px">Lignes par page</label>
+                            <select id="itp" class="form-select"
+                                    style="width: 50px"
+                                    [(ngModel)]="itemsPerPageC">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </td>
+                        <td style="text-align: right">
+                            <pagination-controls (pageChange)="p = $event" id="nC" style="margin: auto"></pagination-controls>
+                        </td>
+                    </tr>
+                </table>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>
+

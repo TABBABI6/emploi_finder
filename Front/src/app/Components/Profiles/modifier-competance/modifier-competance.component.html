@@ -1,0 +1,27 @@
+<div style="width: 550px; text-align: center">
+    <mat-card-title style="color: #3f51b4; margin-bottom: 20px">Modifier Compétance</mat-card-title>
+    <form class="example-form" #editForm="ngForm">
+        <div style="display: flex; align-items: center">
+            <label class="example-margin">Competance:</label>
+            <input placeholder="Compétance" style="margin-left: 10px;width: 200px" id="changeHourStep" class="form-control form-control-sm" name="nom" [(ngModel)]="competance.nom" required/>
+
+            <section class="example-section" style="margin-left: 50px;">
+                <label class="example-margin">Niveau:</label>
+                <mat-slider class="example-margin" color="primary" name="niveau" [(ngModel)]="competance.niveau"></mat-slider>
+            </section>
+        </div>
+        <input type="number" style="display: none" name="id" matInput ngModel="{{competance.id}}">
+
+
+        <table>
+            <tr>
+                <td colspan="2" style="text-align: center; width: 500px; padding-top: 10px">
+                    <mat-card-actions>
+                        <button mat-flat-button color="primary" [disabled]="editForm.invalid" (click)="updateCompetance(editForm.value)">Confirmer</button>
+                        <button mat-flat-button mat-dialog-close color="primary" style="margin-left: 30px">Annuler</button>
+                    </mat-card-actions>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

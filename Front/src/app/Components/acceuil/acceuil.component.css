@@ -1,0 +1,131 @@
+
+
+.bg {
+    /* The image used */
+    background-image: url("https://assets.entrepreneur.com/content/3x2/2000/20160520174625-co-founders-partnership-coworkers-meeting-office.jpeg?auto=webp&quality=95&crop=16:9&width=675");
+    /* Full height */
+    height: 70%;
+    /* Center and scale the image nicely */
+    background-position: center ;
+    background-repeat: no-repeat;
+    background-size:cover;
+
+}
+h2{
+    position: relative;
+    font-family: Geneva, sans-serif;
+    font-size: 35px;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #144ddc, #fff, #000);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: animate 5s linear ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+@keyframes animate {
+    0% {
+        background-position: -500%;
+    }
+    100% {
+        background-position: 500%;
+    }
+}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900');
+
+*
+{
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+body
+{
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    background: #fff;
+    color: #000000;
+    margin-top: 10px;
+}
+div
+{
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+
+
+
+
+
+.contact_info
+{
+    width: 100%;
+    padding-top: 70px;
+    margin-top: 90px;
+}
+.contact_info_item
+{
+    width: calc((100% - 60px) / 3);
+    height: 100px;
+    border: solid 1px #e8e8e8;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+    padding-left: 32px;
+    padding-right: 15px;
+}
+.contact_info_image
+{
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+.contact_info_image img
+{
+    max-width: 100%;
+}
+.contact_info_content
+{
+    padding-left: 17px;
+}
+.contact_info_title
+{
+    font-weight: 500;
+}
+.contact_info_text
+{
+    font-size: 12px;
+    color: rgba(0,0,0,0.5);
+}
+
+
+
+@media only screen and (max-width: 991px)
+{
+
+    .contact_info_item
+    {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .contact_info_item:last-child
+    {
+        margin-bottom: 0px;
+    }
+
+}
+

@@ -1,0 +1,55 @@
+<mat-card style="width: max-content; text-align: center; margin-top: 100px; padding: 50px; position: relative; border-radius: 20px">
+    <div style="width: 100%; display: flex; margin-bottom: 50px">
+        <div style="width:25%;text-align: left">
+            <b>{{date | date}}</b>
+        </div>
+        <div style="width: 50%;text-align: center">
+            <mat-card-title style="color:#3f51b4;" ><u>{{test.titre}}</u></mat-card-title>
+        </div>
+        <div style="width: 25%; display: flex; justify-content: right" *ngIf="role == 'Condidat'">
+            <div style="display: flex; align-items: center;">
+                <mat-icon color="warn">
+                    <span class="material-symbols-outlined">timer</span>
+                </mat-icon>
+                <countdown style="color:#f34336;font-size: larger; font-weight: bold" [config]="{leftTime: test.duree*3600}"></countdown>
+            </div>
+        </div>
+    </div>
+
+    <form #testForm="ngForm" (ngSubmit)="verifier(testForm)">
+
+            <div style="width: 100%; text-align: left" *ngFor="let question of test.questions; let i = index">
+                <h2 style="color:#3f51b4;">Question {{i + 1}}: <i style="color: black">{{question.enance}}</i></h2>
+
+                <ul *ngFor="let v of question.rep_vrai" style="list-style: none">
+                <li>
+                    <mat-radio-button color="primary" ngModel [name]="question.enance"
+                                      class="example-margin"
+                                      [disabled]="role!='Condidat'"
+                                      [value]="v" ngDefaultControl required [checked]="role=='Recruteur'">
+                        {{v}}
+                    </mat-radio-button>
+                </li>
+            </ul>
+            <ul *ngFor="let f of question.rep_faux" style="list-style: none">
+                <li>
+                    <mat-radio-button color="primary" ngModel [name]="question.enance"
+                                      class="example-margin"
+                                      [disabled]="role!='Condidat'"
+                                      [value]="f" ngDefaultControl required>{{f}}</mat-radio-button>
+
+                </li>
+            </ul>
+
+            </div>
+
+
+           <div *ngIf="role == 'Condidat'" style="width: 100%; display: flex; justify-content: right;margin-top: 50px">
+               <div style="width: 200px; text-align: center">
+                   <button id="confirm" style="margin-bottom: 10px" mat-flat-button color="primary" [disabled]="role!='Condidat'"   type="submit">Terminer</button>
+                   <h2>Bonne chance</h2>
+               </div>
+           </div>
+        </form>
+
+</mat-card>

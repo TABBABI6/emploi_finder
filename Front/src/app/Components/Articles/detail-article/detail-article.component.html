@@ -1,0 +1,41 @@
+
+<div class="container   align-self-center" style="background-color: white ;margin-top: 100px">
+    <div class="row ">
+        <div class="col-lg-10 ">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-2">{{article.titre}}</h1>
+                    <div style="height: 1px;width: 100%;background-color: #a2b3c0"></div>
+                    <!-- Post categories-->
+                </header>
+                <!-- Preview image figure-->
+                <figure class="col-7 mb-4"><img class="img-fluid rounded"
+                                                [src]="article.image.url"
+                                                alt=" "
+                                                *ngIf="article.image.file.name!=''"/></figure>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2" style="font-weight: bold">{{article.description}}</div>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <p class="fs-5 mb-4" style="font-weight: bold;font-family:'Arial Black'"></p>
+                    <h3 class="fw-bolder mb-4 mt-5">1. {{article.sous_titre1}}</h3>
+                    <p class="fs-5 mb-4">{{article.description1}}</p>
+                    <h3 class="fw-bolder mb-4 mt-5">2. {{article.sous_titre2}}</h3>
+                    <p class="fs-5 mb-4">{{article.description2}}</p>
+                    <h3 class="fw-bolder mb-4 mt-5">3. {{article.sous_titre3}}</h3>
+                    <p class="fs-5 mb-4">{{article.description3}}</p>
+                    <h3 class="fw-bolder mb-4 mt-5">4. {{article.sous_titre4}}</h3>
+                    <p class="fs-5 mb-4">{{article.description4}}</p>
+                    <h3 class="fw-bolder mb-4 mt-5">5. {{article.sous_titre5}}</h3>
+                    <p class="fs-5 mb-4">{{article.description}}</p>
+                </section>
+            </article>
+            <!-- Comments section-->
+
+        </div>
+    </div>
+</div>
+

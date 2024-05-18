@@ -1,0 +1,121 @@
+
+<div id="content" #content
+     style="display: flex;flex-wrap: wrap;margin-top: 30px; width: 600px;height:830px;background-color: #ffffff">
+
+    <div style="width: 600px;height: 150px;background-color: #f6d0d6; display: flex; align-items: center;margin-top: -30px">
+
+
+        <img [src]="imageSrc" alt=" " style="width: 160px;height: 180px;margin-left: 30px;margin-top: 50px">
+
+        <div style="width: 200px;background-color: #f6d0d6;margin-left: 50px;margin-top: -20px">
+            <mat-card-title style="text-transform: capitalize;background-color: #f6d0d6">
+                {{data.CV.nom}} {{data.CV.prenom}}
+            </mat-card-title>
+            <h3>{{data.CV.titre_professionnel}}</h3>
+            <div style="background-color: black;width: 300px;height: 1px"></div>
+        </div>
+    </div>
+
+    <div style="width: 230px;height: 600px;background-color: #ffffff;padding: 20px;margin: 10px;margin-top: -10px; border-right: 1px black solid">
+
+        <mat-card-title
+                style="height: 25px;width: content-box;background-color: black;color: #ffffff;margin-top: -10px;font-size: 14px; align-items: center;display: flex; justify-content: center">
+            Profil
+        </mat-card-title>
+
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px;margin-top: 10px">
+            <img src="/assets/imgcv/location.png"  alt=" ">ADRESSE
+        </h3>
+        <mat-card-subtitle style="text-transform: capitalize;padding-left: 25px;background-color: #3f51b4">{{data.CV.adresse}}</mat-card-subtitle>
+
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px">
+            <img src="/assets/imgcv/mail.png" alt=" ">E-MAIL
+        </h3>
+        <mat-card-subtitle style="text-transform: capitalize;padding-left: 25px"> {{data.CV.mail}}</mat-card-subtitle>
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px">
+            <img src="/assets/imgcv/call.png"  alt=" ">TELEPHONE
+        </h3>
+        <mat-card-subtitle style="text-transform: capitalize;padding-left: 25px">{{data.CV.num_tel}}</mat-card-subtitle>
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px">
+            <img src="/assets/imgcv/date.png"  alt=" ">DATE DE NAISSANCE
+        </h3>
+        <mat-card-subtitle style="text-transform: capitalize;padding-left: 25px">{{data.CV.date_naissance}}</mat-card-subtitle>
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px">
+            <img src="/assets/imgcv/train.png"  alt=" ">PERMIS
+        </h3>
+        <mat-card-subtitle style="text-transform: capitalize;padding-left: 25px">{{data.CV.permis}}</mat-card-subtitle>
+
+        <mat-card-title
+                style="height: 25px;width: content-box;background-color: black;color: #ffffff;margin-top: 10px;font-size: 14px; align-items: center;display: flex; justify-content: center">
+            COMPETENCES
+        </mat-card-title>
+
+
+        <mat-card-subtitle style="text-transform: capitalize;" >{{data.CV.competences}}</mat-card-subtitle>
+        <mat-card-title
+                style="height: 25px;width: content-box;background-color: black;color: #ffffff;margin-top: 10px;font-size: 14px; align-items: center;display: flex; justify-content: center">
+            LOISIRS
+        </mat-card-title>
+        <mat-card-subtitle style="text-transform: capitalize;">{{data.CV.loisirs}}</mat-card-subtitle>
+    </div>
+
+
+    <div style="width: 300px; height: 600px;margin-top: -10px;background-color:#ffffff;">
+
+        <p>{{data.CV.description}}</p>
+        <mat-card-title
+                style="height: 25px;width: content-box;background-color: black;margin-left:30px;color: #ffffff;margin-top: 10px;font-size: 14px; align-items: center;display: flex; justify-content: center">
+
+            EXPERIENCES PROFESSIONNELLES
+        </mat-card-title>
+
+        <div style="display: flex;flex-wrap: wrap; padding: 20px;background-color: #ffffff">
+            <table style="width: 260px;">
+                <tr>
+                    <th style="width: 50px">
+                        <mat-card-subtitle>{{data.CV.date}}</mat-card-subtitle></th>
+                    <th style="text-transform: capitalize;padding-left: 5px;  width: 210px;">
+                        <p style="font-weight: bold">{{data.CV.poste}}-{{data.CV.entreprise}}</p>
+                    </th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <mat-card-subtitle>{{data.CV.description}}
+                        </mat-card-subtitle>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <mat-card-title
+                style="height: 25px;width: content-box;background-color: black;color: #ffffff;margin-top: 10px;font-size: 14px; align-items: center;display: flex; justify-content: center">
+            FORMATIONS
+        </mat-card-title>
+        <div style="display: flex;flex-wrap: wrap; padding: 20px">
+            <table style="width: 260px;">
+                <tr>
+                    <th style="width: 50px">
+                        <mat-card-subtitle>
+                            {{data.CV.date}}
+                        </mat-card-subtitle></th>
+                    <th style="text-transform: capitalize;padding-left: 5px;  width: 210px;">
+                        <p style="font-weight: bold">{{data.CV.diplome}}</p>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th style="width: 50px">
+                    <th style="text-transform: capitalize;padding-left: 5px;  width: 210px;">
+                        <p style="font-weight: bold">{{cv.universite}}</p>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+<button class="btn btn-primary" type="submit" style="margin-left: 300px" (click)="makePDF()">Dowload en PDF</button>
+
+

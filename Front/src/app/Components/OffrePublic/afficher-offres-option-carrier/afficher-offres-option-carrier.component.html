@@ -1,0 +1,42 @@
+<div style="text-align: center;width: 800px;">
+    <div  *ngIf="OffresPublic.length==0" style="margin: auto;width: 600px; height: 400px; text-align: center">
+        <mat-spinner style="margin-left: 250px;margin-top: 100px"></mat-spinner><br>
+        <mat-card-title style="color:#3f51b4;">Chargement...</mat-card-title>
+    </div>
+    <mat-card style="margin: 20px;cursor: pointer" *ngFor="let offrePublic of OffresPublic | paginate: {id: 'kjjj',itemsPerPage: 4, currentPage: p}"
+              class="example-ripple-container mat-elevation-z4"
+              matRipple
+              [matRippleCentered]="centered"
+              [matRippleDisabled]="disabled"
+              [matRippleUnbounded]="unbounded" (click)="visiter(offrePublic.link)">
+        <mat-card-header style="margin-top: 10px;display: flex; align-items: center;justify-content: left">
+            <div style="text-align: left">
+                <mat-card-title style="color: #3f51b4; font-weight: bold">{{offrePublic.title}}</mat-card-title>
+                <p style="font-weight: bold; font-size: 20px">Société: {{offrePublic.company}}</p>
+            </div>
+        </mat-card-header>
+        <mat-card-content style="font-size: 20px;margin-top: 10px">
+            <div style="display: flex;align-items: center;justify-content: center">
+                <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                {{offrePublic.location}}
+                <div style="display: flex;align-items: center;">
+                    <mat-icon color="primary" style="margin-left: 20px" *ngIf="offrePublic.type != null ">
+                        <span class="material-symbols-outlined">description</span>
+                    </mat-icon>
+                    {{offrePublic.type}}
+                </div>
+                <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                {{offrePublic.availablity}}
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+
+    <pagination-controls (pageChange)="p = $event" id="kjjj"></pagination-controls>
+
+</div>
+
+
+
+
+

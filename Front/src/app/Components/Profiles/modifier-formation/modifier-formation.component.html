@@ -1,0 +1,29 @@
+<div style="width: 620px; text-align: center">
+    <mat-card-title style="color: #3f51b4; margin-bottom: 20px">Modifier Formation</mat-card-title>
+    <form class="example-form" #editForm="ngForm">
+
+        <div style="display: flex; align-items: center">
+            <div style="text-align: left">
+                <p style="font-weight: bold">Formation:</p>
+                <input placeholder="Formation" style="width: 200px" class="form-control form-control-sm" name="titre" [(ngModel)]="formation.titre" required/>
+            </div>
+            <div style="text-align: left;margin-left: 10px">
+                <p style="font-weight: bold">Centre de formation:</p>
+                <input placeholder="Centre de formation" style="width: 200px;" class="form-control form-control-sm" name="centre_formation" [(ngModel)]="formation.centre_formation" required/>
+            </div>
+            <div style="text-align: left;margin-left: 10px">
+                <p style="font-weight: bold">Date:</p>
+                <input type="date" style="width: 200px;" class="form-control form-control-sm" name="date" [(ngModel)]="formation.date" required/>
+            </div>
+        </div>
+
+        <input type="number" style="display: none" name="id" matInput ngModel="{{formation.id}}">
+
+        <mat-card-footer style=" margin-top: 30px">
+            <mat-card-actions style="margin: auto;">
+                <button mat-flat-button color="primary" [disabled]="editForm.invalid" (click)="updateFormation(editForm.value)">Confirmer</button>
+                <button mat-flat-button mat-dialog-close color="primary" style="margin-left: 30px">Annuler</button>
+            </mat-card-actions>
+        </mat-card-footer>
+    </form>
+</div>

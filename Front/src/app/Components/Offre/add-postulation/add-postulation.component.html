@@ -1,0 +1,43 @@
+<div *ngIf="resultat!=-1" style="width: 100%; text-align: center; border-bottom: 10px">
+    <mat-card-title style="color: #3f51b4">Vous aver eu un score {{resultat}} pour le test {{offre.testNiveaus[0].titre}} <br><br>(score min {{offre.testNiveaus[0].score_min}})<br><br></mat-card-title>
+    <mat-card-title style="color: #f60000; margin-top: 40px" *ngIf="resultat != -1 && resultat<offre.testNiveaus[0].score_min">Votre postulation est refuser</mat-card-title>
+</div>
+
+
+<div style="width: 100%; text-align: center" *ngIf="valider == true || offre.testNiveaus.length==0">
+    <mat-card-title style="color: #3f51b4; margin-bottom: 50px;">
+        Veuiller ajouter votre CV et une lettre de motivation
+        <br><br>
+        pour confirmer votre postulation
+    </mat-card-title>
+    <div style="display: flex; align-items: center; justify-content: space-around;text-align: center; width: content-box">
+        <div style="text-align: center">
+            <label for="file1" class="label-file" (dragover)="onDragOverCV($event)" (drop)="onDropSuccessCV($event)">
+                CV<span class="material-symbols-outlined">note_add</span>
+            </label>
+            <input id="file1" class="input-file" type="file" accept="application/pdf" (change)="onChangeCV($event)">
+        </div>
+
+        <div style="text-align: center">
+            <label for="file2" class="label-file" (dragover)="onDragOverLM($event)" (drop)="onDropSuccessLM($event)">
+                <p>Lettre de motivation<span class="material-symbols-outlined">note_add</span></p>
+            </label>
+            <input id="file2" class="input-file" type="file" accept="application/pdf" (change)="onChangeLM($event)">
+        </div>
+    </div>
+    <div style="text-align: center; width: content-box; margin-top: 50px">
+        <button mat-button mat-dialog-close> Annuler</button>
+        <button mat-button [disabled]="confirm()" (click)="addPostulation(data.candidatId, data.offreId)"> Confirmer</button>
+    </div>
+</div>
+
+<div *ngIf="offre.testNiveaus.length!=0 && resultat==-1" style="width: 100%; text-align: center; margin-top: 50px">
+    <mat-card-title style="color: #3f51b4; margin-bottom: 20px;height: 50px">
+        Veuiller passer le test "<b style="text-transform: capitalize">{{offre.testNiveaus[0].titre}}</b>" <br><br> et avoir un score superieur a <b>{{offre.testNiveaus[0].score_min}}</b>
+        <br><br> pour pouvoir postuler sur cette offre
+    </mat-card-title>
+    <button style="margin-top: 50px" mat-button mat-dialog-close (click)="getDetailsTest(offre.testNiveaus[0], offre.id, data.recid)">Lire plus >></button>
+</div>
+
+
+

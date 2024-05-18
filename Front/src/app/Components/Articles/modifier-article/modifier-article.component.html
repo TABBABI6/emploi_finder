@@ -1,0 +1,68 @@
+<mat-card style="width: 750px; margin: 10px">
+
+    <form class="example-form" #editForm="ngForm"  style="display: flex;flex-wrap: wrap; padding: 20px; width: 820px;">
+
+
+
+        <mat-form-field appearance="outline" style="width: 340px">
+            <mat-label>Titre article</mat-label>
+            <input matInput placeholder="titre"  name="titre" [(ngModel)]="article.titre">
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px" >
+            <mat-label>Description</mat-label>
+            <textarea type="date" matInput placeholder="description" name="description"
+                      [(ngModel)]="article.description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 340px">
+            <mat-label>Sous-Titre1</mat-label>
+            <textarea matInput placeholder="titre1" name="sous_titre1" [(ngModel)]="article.sous_titre1"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px;width: 340px">
+            <mat-label>Description-Titre1</mat-label>
+            <textarea matInput placeholder="titre1" name="description1" [(ngModel)]="article.description1"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 340px">
+            <mat-label>Sous-Titre2</mat-label>
+            <textarea matInput placeholder="titre1" name="sous_titre2" [(ngModel)]="article.sous_titre2"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px;width: 340px">
+            <mat-label>Description-Titre2</mat-label>
+            <textarea matInput placeholder="description2" name="description2" [(ngModel)]="article.description2"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 340px">
+            <mat-label>Sous-Titre3</mat-label>
+            <textarea matInput placeholder="titre3" name="sous_titre3" [(ngModel)]="article.sous_titre3"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px;width: 340px">
+            <mat-label>Description-Titre3</mat-label>
+            <textarea matInput placeholder="description-titre3" name="description3" [(ngModel)]="article.description3"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 340px">
+            <mat-label>Sous-Titre4</mat-label>
+            <textarea matInput placeholder="description-titre4"  name="sous_titre4" [(ngModel)]="article.sous_titre4"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px;width: 340px">
+            <mat-label>Description-Titre4</mat-label>
+            <textarea matInput placeholder="description-titre4" name="description4" [(ngModel)]="article.description4"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 340px">
+            <mat-label>Sous-Titre5</mat-label>
+            <textarea matInput placeholder="titre5" name="sous_titre5" [(ngModel)]="article.sous_titre5"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px;width: 340px">
+            <mat-label>Description-Titre5</mat-label>
+            <textarea matInput placeholder="description-titre5" name="description5" [(ngModel)]="article.description5"></textarea>
+        </mat-form-field>
+
+        <input type="number" style="display: none" name="id" matInput ngModel="{{article.id}}">
+        <div style="width: 200px;margin-top: 20px">
+            <button style="margin-left: 10px" mat-flat-button color="primary" [disabled]="editForm.invalid" (click)="updateArticle(editForm.value)"  type="submit">Confirmer</button>
+            <button mat-flat-button color="primary" mat-dialog-close  style="margin-left: 10px">Annuler</button>
+        </div>
+    </form>
+</mat-card>
+
+

@@ -1,0 +1,177 @@
+<mat-card style="width: 750px; margin: 10px;">
+    <mat-card-title style="display: flex; justify-content: space-between; align-items: center">
+        Offres
+        <button mat-icon-button *ngIf="isLogedIn() && proprietaireCompte()" (click)="ajoutOffre()" matTooltip="Ajouter une offre">
+            <span class="material-symbols-outlined">add_circle</span>
+        </button>
+    </mat-card-title>
+
+    <form class="example-form" #addOffre="ngForm" (ngSubmit)="addOffres(addOffre)" *ngIf="addoffre" style="display: flex;flex-wrap: wrap; padding: 20px; width: 820px;">
+
+        <div style="width: 300px; margin: 10px">
+            <mat-form-field appearance="fill">
+                <mat-label>Titre</mat-label>
+                <input matInput name="titre" [(ngModel)]="offre.titre" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>date_expiration</mat-label>
+                <input matInput type="date" name="date_expiration" [(ngModel)]="offre.date_expiration" required>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill">
+                <mat-label>Secteurs d'activité</mat-label>
+                <mat-select name="domaine" [(ngModel)]="offre.domaine" required>
+                    <mat-option value="aéronautique / aviation / voyagiste">aéronautique / aviation / voyagiste</mat-option>
+                    <mat-option value="agriculture / agro-alimentaire / environnement">agriculture / agro-alimentaire / environnement</mat-option>
+                    <mat-option value="architecture / immobilier / BTP">architecture / immobilier / BTP</mat-option>
+                    <mat-option value="artisanat / textile / cuir">artisanat / textile / cuir</mat-option>
+                    <mat-option value="automobile / moteurs / engins mécaniques">automobile / moteurs / engins mécaniques</mat-option>
+                    <mat-option value="banque / finance / assurances">banque / finance / assurances</mat-option>
+                    <mat-option value="call center / télévente">call center / télévente</mat-option>
+                    <mat-option value="chimie / biologie / physique">chimie / biologie / physique</mat-option>
+                    <mat-option value="commerce / vente / distribution">commerce / vente / distribution</mat-option>
+                    <mat-option value="communication / publicité / média">communication / publicité / média</mat-option>
+                    <mat-option value="comptabilité / gestion / audit">comptabilité / gestion / audit</mat-option>
+                    <mat-option value="consulting / étude / stratégie">consulting / étude / stratégie</mat-option>
+                    <mat-option value="cosmétique / parfumerie / luxe">cosmétique / parfumerie / luxe</mat-option>
+                    <mat-option value="culture / audiovisuel">culture / audiovisuel</mat-option>
+                    <mat-option value="droit / fiscalité">droit / fiscalité</mat-option>
+                    <mat-option value="électronique / électricité / énergie">électronique / électricité / énergie</mat-option>
+                    <mat-option value="enseignement / formation / puériculture">enseignement / formation / puériculture</mat-option>
+                    <mat-option value="fonction publique / collectivités locales">fonction publique / collectivités locales</mat-option>
+                    <mat-option value="gardiennage / sécurité / maintenance">gardiennage / sécurité / maintenance</mat-option>
+                    <mat-option value="import / export">import / export</mat-option>
+                    <mat-option value="industrie électro-mécaniques">industrie électro-mécaniques</mat-option>
+                    <mat-option value="industrie métalliques">industrie métalliques</mat-option>
+                    <mat-option value="informatique / télécoms">informatique / télécoms</mat-option>
+                    <mat-option value="journalisme / traduction / édition">journalisme / traduction / édition</mat-option>
+                    <mat-option value="recrutement / ressources humaines">recrutement / ressources humaines</mat-option>
+                    <mat-option value="santé / paramédical / optique">santé / paramédical / optique</mat-option>
+                    <mat-option value="tourisme / hôtellerie / restauration / loisirs">tourisme / hôtellerie / restauration / loisirs</mat-option>
+                    <mat-option value="transport / logistique">transport / logistique</mat-option>
+                    <mat-option value="autres">autres</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Niveau d'expérience</mat-label>
+                <mat-select name="experience" [(ngModel)]="offre.experience" required>
+                    <mat-option value="Aucune experience">Aucune experience</mat-option>
+                    <mat-option value="Moins d'un an">Moins d'un an</mat-option>
+                    <mat-option value="Entre 1 et 2 ans">Entre 1 et 2 ans</mat-option>
+                    <mat-option value="Entre 2 et 5 ans">Entre 2 et 5 ans</mat-option>
+                    <mat-option value="Entre 5 et 10 ans">Entre 5 et 10 ans</mat-option>
+                    <mat-option value="Plus que 10 ans">Plus que 10 ans</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Niveau d'étude</mat-label>
+                <mat-select name="etude" [(ngModel)]="offre.etude" required>
+                    <mat-option value="Primaire">Primaire</mat-option>
+                    <mat-option value="Secondaire">Secondaire</mat-option>
+                    <mat-option value="Formations professionnelles">Formations professionnelles</mat-option>
+                    <mat-option value="Bac">Bac</mat-option>
+                    <mat-option value="Bac + 1">Bac + 1</mat-option>
+                    <mat-option value="Bac + 2">Bac + 2</mat-option>
+                    <mat-option value="Bac + 3">Bac + 3</mat-option>
+                    <mat-option value="Bac + 4">Bac + 4</mat-option>
+                    <mat-option value="Bac + 5">Bac + 5</mat-option>
+                    <mat-option value="Doctorat">Doctorat</mat-option>
+                    <mat-option value="Expert, Recherche">Expert, Recherche</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Lieu</mat-label>
+                <input matInput name="lieu" [(ngModel)]="offre.lieu" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Disponibilite</mat-label>
+                <input matInput name="disponibilite" [(ngModel)]="offre.disponibilite" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Salaire (TND)</mat-label>
+                <input matInput type="number" name="salaire" [(ngModel)]="offre.salaire" required>
+            </mat-form-field>
+            <label>Type de poste:</label>
+            <section style="margin-top: 10px">
+                <mat-radio-group name="type_poste" [(ngModel)]="offre.type_poste">
+                    <table>
+                        <tr>
+                            <td><mat-radio-button class="example-margin" color="primary" value="CDI">CDI</mat-radio-button></td>
+                            <td colspan="2">
+                                <mat-radio-button class="example-margin" color="primary" value="SIVP">SIVP</mat-radio-button>
+                                <mat-radio-button class="example-margin" color="primary" value="CDD">CDD</mat-radio-button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><mat-radio-button class="example-margin" color="primary" value="Intérim">Intérim</mat-radio-button></td>
+                            <td colspan="2"><mat-radio-button class="example-margin" color="primary" value="Indépendant/Freelance">Indépendant/Freelance</mat-radio-button></td>
+                        </tr>
+                        <tr>
+                            <td><mat-radio-button class="example-margin" color="primary" value="Saisonnier">Saisonnier</mat-radio-button></td>
+                            <td><mat-radio-button class="example-margin" color="primary" value="Fonction publique">Fonction publique</mat-radio-button></td>
+                        </tr>
+                        <tr>
+                            <td><mat-radio-button class="example-margin" color="primary" value="Stage/PFE">Stage/PFE</mat-radio-button></td>
+                            <td><mat-radio-button class="example-margin" color="primary" value="Stage">Stage</mat-radio-button></td>
+                        </tr>
+                    </table>
+                </mat-radio-group>
+            </section>
+        </div>
+        <mat-form-field class="example-full-width" appearance="fill" style="margin: 10px; width: 350px">
+            <mat-label>Description de l'offre</mat-label>
+            <textarea style=" width: 300px;height: 512px" matInput name="description" [(ngModel)]="offre.description" required></textarea>
+        </mat-form-field>
+
+        <div style="width: 200px;margin-left: 510px">
+            <button mat-flat-button color="primary" (click)="ajoutOffre()">Annuler</button>
+            <button style="margin-left: 10px" mat-flat-button color="primary" [disabled]="addOffre.invalid" type="submit">Ajouter</button>
+        </div>
+
+    </form>
+
+    <div style="display: flex;flex-wrap: wrap;">
+
+        <mat-card style="margin: 5px; width: 100%;height: 150px;" *ngFor="let offre of recruteurOfres | paginate: { id: 'no',itemsPerPage: 3, currentPage: p }">
+            <mat-card-subtitle style="display: flex; justify-content: space-between; align-items: center">
+                Ajouté le: {{offre.date_ajout}}
+                <div style="display: flex; align-items: center" *ngIf="isLogedIn() && proprietaireCompte()">
+                    <b style="color: #3f51b4" *ngIf="offre.testNiveaus.length!=0">Inclu un test</b>
+                    <button color="primary" mat-icon-button *ngIf="offre.testNiveaus.length!=0" (click)="deleteTestFromOffre(offre.id, offre.testNiveaus[0].id)" matTooltip="Supprimer le test">
+                        <span class="material-symbols-outlined">quiz</span>
+                    </button>
+                    <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;" *ngIf="offre.testNiveaus.length!=0"></div>
+                    <button mat-icon-button (click)="validerSuppression(offre.id)" matTooltip="Supprimer">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                    </button>
+                    <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                    <button mat-icon-button matTooltip="Modifier" (click)="modifier(offre.id)">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                    </button>
+                    <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;" *ngIf="offre.testNiveaus.length==0 && recruteur.testNiveaus.length!=0"></div>
+                    <button color="primary" mat-icon-button *ngIf="offre.testNiveaus.length==0 && recruteur.testNiveaus.length!=0" (click)="addTestToOffre(offre.id)" matTooltip="Ajouter une test">
+                        <span class="material-symbols-outlined">add_circle</span>
+                    </button>
+                </div>
+            </mat-card-subtitle>
+            <mat-card-title>{{offre.titre}}</mat-card-title>
+            <mat-card-content style="margin-top: 20px; display: flex; align-items: center; justify-content: space-between">
+                <div style="display: flex; align-items: center">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                    {{offre.lieu}}
+                    <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">description</span></mat-icon>
+                    {{offre.type_poste}}
+                    <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                    {{offre.disponibilite}}
+                </div>
+                <button mat-icon-button (click)="getDetails(offre.id, idUser)" matTooltip="Voir plus">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">read_more</span></mat-icon>
+                </button>
+            </mat-card-content>
+        </mat-card>
+        <pagination-controls style="margin: auto; padding-top: 20px" (pageChange)="p = $event" id="no" *ngIf="recruteurOfres.length>3"></pagination-controls>
+
+    </div>
+
+</mat-card>

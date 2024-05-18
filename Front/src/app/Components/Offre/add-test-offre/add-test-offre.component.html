@@ -1,0 +1,23 @@
+<div style="width: 400px; text-align: center">
+    <mat-card style="width: border-box;height: max-content;margin-top: 10px; cursor: pointer"
+              *ngFor="let test of mesTests" (click)="addTestToOffre(data.idoffre, test.id)">
+        <mat-card-title style="color:#3f51b4;">{{test.titre}}</mat-card-title>
+        <mat-card-content>
+            <div style="display: flex; align-items: center; margin-top: 10px">
+                <mat-icon color="primary">
+                    <span class="material-symbols-outlined">timer</span>
+                </mat-icon>
+                Durée {{test.duree}}h
+            </div>
+
+            <div style="display: flex; align-items: center; margin-top: 10px">
+                <mat-icon color="primary">
+                    <span class="material-symbols-outlined">quiz</span>
+                </mat-icon>
+                nombre de question: {{test.nb_questions}}
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+    <button mat-button mat-dialog-close style="margin-top: 20px">Retour</button>
+</div>

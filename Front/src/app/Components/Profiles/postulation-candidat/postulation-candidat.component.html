@@ -1,0 +1,28 @@
+<mat-card style="width: 750px; margin: 10px" *ngIf="postulations.length>0">
+    <mat-card-title style="display: flex; justify-content: space-between; align-items: center">
+        Postulations
+    </mat-card-title>
+    <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let postulation of postulations">
+            <mat-card style="width: 700px; margin: 10px">
+                <div style="display: flex; justify-content: space-between;width: 680px; position: absolute; top: 52px" *ngIf="postulations.length>1">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">arrow_back_ios</span></mat-icon>
+                    <mat-icon color="primary"><span class="material-symbols-outlined">arrow_forward_ios</span></mat-icon>
+                </div>
+                <mat-card-title style="color: #3f51b4">{{postulation.titre}}</mat-card-title>
+                <mat-card-content style="margin-top: 20px; margin-left: 30px;display: flex; align-items: center; justify-content: space-between; width: 300px">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                        {{postulation.lieu}}
+                        <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">description</span></mat-icon>
+                        {{postulation.type_poste}}
+                        <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                        {{postulation.disponibilite}}
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-footer style="text-align: center">
+                    <button mat-button (click)="getDetails(postulation.id)"  matTooltip="Voir plus" style="color: #3f51b4; ">Voir details</button>
+                </mat-card-footer>
+            </mat-card>
+        </ng-template>
+    </ngb-carousel>
+</mat-card>

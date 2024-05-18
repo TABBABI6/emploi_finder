@@ -1,0 +1,24 @@
+<form class="example-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)" style="text-align: center">
+    <mat-form-field class="example-full-width" appearance="fill" style="width: 400px">
+        <mat-label>Mail</mat-label>
+        <input matInput [(ngModel)]="authentification.mail" required name="mail">
+    </mat-form-field>
+
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 400px">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput [(ngModel)]="authentification.mdp" required type="password" name="mdp">
+        </mat-form-field>
+    </p>
+    <mat-card-actions>
+        <button mat-flat-button color="primary" [disabled]="loginForm.invalid" mat-dialog-close type="submit">Confirmer</button>
+        <button mat-flat-button mat-dialog-close color="primary" style="margin-left: 30px">Annuler</button>
+    </mat-card-actions>
+</form>
+
+<div style="width: 100%; text-align: center">
+    <button mat-button mat-dialog-close (click)="openDialogSignin()" matTooltip="Creer un compte">
+        <mat-icon color="primary"><span class="material-symbols-outlined">person_add</span></mat-icon>
+        <span style="margin-left: 10px; color: #3f51b4">Créer un compte</span>
+    </button>
+</div>

@@ -1,0 +1,117 @@
+
+<div id="content" #content
+     style="display: flex;flex-wrap: wrap;margin-top: 30px; width: 600px;height:830px;background-color: #ffffff">
+
+    <div style="width: 600px;height: 150px;background-color: #ffffff; display: flex; align-items: center;margin-top: -30px">
+
+        <img [src]="imageSrc" alt=" " style="width: 160px;height: 180px;margin-left: 10px;margin-top: 50px">
+
+
+
+
+        <div style="width: 200px;background-color: #ffffff;margin-left: 50px;margin-top: -20px">
+
+            <mat-card-title style="margin-left: 20px;background-color: #ffffff;font-size: 15px;font-weight: bold">
+                <img src="/assets/imgcv/user%20(1).png" style="margin-left: 10px"> A PROPOS DE MOI
+            </mat-card-title>
+            <h3 style="margin-left: 20px">{{data.CV.description}}</h3>
+            <div style="background-color: black;width: 300px;height: 1px;margin-left: 20px;margin-top: 4px"></div>
+
+        </div>
+    </div>
+
+    <div style="width: 230px;height: 600px;background-color: #ffffff;padding: 20px;margin: 10px;margin-top: -10px">
+        <div style="height: 800px;width: 1px;background-color: black;margin-left: 200px;margin-top: -210px"></div>
+        <mat-card-title
+                style="height: 25px;text-transform: capitalize;width: content-box;margin-top: -600px;font-size: 14px; align-items: center;display: flex; margin-left: 25px;font-weight:bold ">
+            {{data.CV.nom}} {{data.CV.prenom}}
+        </mat-card-title>
+        <h3 style="margin-top: -10px">{{data.CV.titre_professionnel}}</h3>
+
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px;margin-top: 10px;color: #00807c">
+            <img src="/assets/imgcv/location_on_FILL0_wght400_GRAD0_opsz48.png" style="width: 20px; height: 20px">ADRESSE
+        </h3>
+        <p style="padding-left: 12px;margin-top: -20px">{{data.CV.adresse}}</p>
+
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px;color: #00807c">
+            <img src="/assets/imgcv/mail_FILL0_wght400_GRAD0_opsz48.png" style="width: 20px; height: 20px">E-MAIL
+        </h3>
+        <p style="padding-left: 10px;margin-top: -20px"> {{data.CV.mail}}</p>
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px;color: #00807c">
+            <img src="/assets/imgcv/call_FILL0_wght400_GRAD0_opsz48.png" style="width: 20px; height: 20px">TELEPHONE
+        </h3>
+        <p style="padding-left: 10px;margin-top: -20px">{{data.CV.num_tel}}</p>
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px;color: #00807c">
+            <img src="/assets/imgcv/calendar_month_FILL0_wght400_GRAD0_opsz48.png" style="width: 20px; height: 20px">DATE DE NAISSANCE
+        </h3>
+        <p style="padding-left: 12px;margin-top: -20px">{{data.CV.date_naissance}}</p>
+        <h3 style="display: flex; align-items: center;font-weight: bold;font-size: 12px;color: #00807c">
+            <img src="/assets/imgcv/train.png" style="width: 20px; height: 20px">PERMIS
+        </h3>
+        <p style="margin-top: -20px;padding-left: 10px">{{data.CV.permis}}</p>
+
+        <mat-card-title
+                style="height: 25px;width: content-box;margin-top: 10px;font-size: 14px;font-weight: bold">
+            COMPETENCES
+        </mat-card-title>
+
+
+        <mat-card-subtitle style="text-transform: capitalize;" *ngFor="let c of data.CV.competences" > {{c.nom}}</mat-card-subtitle>
+        <mat-card-title
+                style="height: 25px;width: content-box;margin-top: 10px;font-size: 14px;display: flex;font-weight: bold">
+            LOISIRS
+        </mat-card-title>
+        <mat-card-subtitle style="text-transform: capitalize;" *ngFor="let c of data.CV.loisirs">{{c.nom}}</mat-card-subtitle>
+    </div>
+
+
+    <div style="width: 300px; height: 600px;margin-top: -40px;background-color:#ffffff;">
+
+        <mat-card-title style="margin-left: -10px;background-color: #ffffff;font-weight: bold;font-size: 14px;margin-top:-30px">
+            <img src="/assets/imgcv/work_FILL0_wght400_GRAD0_opsz48.png" style="width: 20px; height: 20px; margin-left: 10px" > EXPERIENCES PROFESSIONNELLES
+        </mat-card-title>
+
+
+        <div style="display: flex;flex-wrap: wrap; padding: 20px;background-color: #ffffff">
+            <table style="width: 260px;">
+                <tr>
+                    <th style="width: 50px">
+                        <mat-card-subtitle style="margin-left: -20px;height:30px;width: 80px;margin-top: -10px"*ngFor="let g of data.CV.experiences">{{g.dates}}</mat-card-subtitle></th>
+                    <th style="text-transform: capitalize;padding-left: 5px;  width: 210px;">
+                        <p style="font-weight: bold;margin-left: 10px;margin-top: -10px" *ngFor="let g of data.CV.experiences">{{g.poste}}</p>
+                        <p style="font-weight: bold;margin-top: -15px;margin-left: 10px"*ngFor="let g of data.CV.experiences">{{g.entreprise}}</p>
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+        <div style="background-color: black;margin-top: 10px;width: 320px;height: 1px"></div>
+
+        <mat-card-title style="margin-left: -10px;background-color: #ffffff;font-weight: bold;font-size: 14px;margin-top:10px">
+            <img src="/assets/imgcv/open-book.png" style="width: 20px; height: 20px; margin-left: 10px"> FORMATIONS
+        </mat-card-title>
+
+
+        <div style="display: flex;flex-wrap: wrap; padding: 20px">
+            <table style="width: 260px;">
+                <tr>
+                    <th style="width: 50px">
+                        <mat-card-subtitle style="margin-left: -20px;height:30px;width: 80px;margin-top: -10px" *ngFor="let n of data.CV.formations">
+                            {{n.date}}
+                        </mat-card-subtitle></th>
+                    <th style="text-transform: capitalize;padding-left: 5px;  width: 210px;">
+                        <p style="font-weight: bold;margin-left: 10px;margin-top: -10px" *ngFor="let n of data.CV.formations">{{n.diplome}}</p>
+                        <p style="font-weight: bold;margin-top: -15px;margin-left: 10px" *ngFor="let n of data.CV.formations">{{n.univ}}</p>
+                    </th>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+
+</div>
+<button class="btn btn-primary" type="submit" style="margin-left: 200px" (click)="makePDF()">Dowload en PDF</button>
+
+

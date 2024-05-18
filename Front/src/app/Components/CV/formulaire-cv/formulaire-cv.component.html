@@ -1,0 +1,292 @@
+<mat-horizontal-stepper style="width: 530px" labelPosition="bottom" xmlns="http://www.w3.org/1999/html">
+    <mat-step >
+
+        <ng-template  matStepLabel matStepperIcon="done" ></ng-template>
+        <h1 style="text-align: center">Saisir Vos Données</h1>
+        <hr>
+        <div class="form-group" style="text-align: left">
+            <mat-form-field appearance="outline" style="width: 430px">
+                <mat-label >Entrer votre nom</mat-label>
+                <input matInput  name="nom" id="nom" placeholder="nom" [(ngModel)]="cv.nom" required >
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+            <div class="form-group" style="text-align: left">
+                <mat-form-field appearance="outline" style="width: 430px">
+                    <mat-label>Entrer votre prenom</mat-label>
+                    <input matInput  name="prenom" id="prenom" placeholder="prenom"
+                           [(ngModel)]="cv.prenom" required>
+
+                </mat-form-field>
+
+                <div class="form-group" style="text-align: left">
+                    <mat-form-field appearance="outline" style="width: 430px">
+                        <mat-label>titre profetionnel</mat-label>
+                        <input matInput placeholder="exple:Technicien réseaux"  id="poste" name="titre_professionnel"
+                               [(ngModel)]="cv.titre_professionnel" required>
+
+                    </mat-form-field>
+                    <div class="form-group" style="text-align: left">
+                        <mat-form-field appearance="outline" style="width: 430px">
+                            <mat-label>Mail</mat-label>
+                            <input  type="mail" matInput placeholder="Ex. mail@gmail.com"  name="mail"
+                                    [(ngModel)]="cv.mail" required>
+                            <mat-icon matSuffix>mail</mat-icon>
+                        </mat-form-field>
+
+
+
+
+                        <input type="file" class="form-control-file" id="fichier" (change)="onFileSelected($event)"
+                               name="image">
+                        <img id="blah" alt=" " *ngIf="imageSrc" [src]="imageSrc" style="width: 200px; height: 200px"/>
+
+                    </div>
+
+                    <div>
+                        <button class="btn btn-primary" matStepperNext>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-step>
+
+    <mat-step >
+        <ng-template  matStepLabel></ng-template>
+        <h1 style="text-align: center">Contact Détails</h1>
+        <hr>
+        <mat-form-field appearance="outline" style="width: 228px">
+            <mat-label >Entrer votre adresse</mat-label>
+            <input matInput id="add" name="adresse " placeholder="adresse"
+                   [(ngModel)]="cv.adress" required>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" style="margin-left: 10px ;width: 228px">
+            <mat-label>Permis</mat-label>
+            <input matInput id="permis"  name=" permis" placeholder="permis"
+                   [(ngModel)]="cv.permis" required>
+        </mat-form-field>
+
+        <div class="form-group" style="text-align: left">
+            <mat-form-field appearance="outline"  style="width: 228px">
+                <mat-label>Entrer votre Numero</mat-label>
+                <input  type="tel" matInput placeholder="numero"  id="num"  name="num_tel"
+                        [(ngModel)]="cv.num_tel" required>
+                <mat-icon matSuffix>call</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="margin-left: 10px;width: 228px">
+                <mat-label>Date de naissance</mat-label>
+                <input matInput type="date" id="date"  name="date_naissance"
+                       placeholder="date-naissance" [(ngModel)]="cv.date_naissance" required>
+            </mat-form-field>
+            <div class="form-group" style="text-align: left">
+
+                <div class="form-group" style="text-align: left">
+                    <mat-form-field appearance="outline" style="  width:470px">
+                        <mat-label>Description profil</mat-label>
+                        <textarea matInput placeholder="Ex. jeune motivant..." id="profil" name="description"
+                                  [(ngModel)]="cv.description" required></textarea>
+                    </mat-form-field>
+
+
+
+                    <div>
+                        <button class="btn btn-primary"   matStepperPrevious>previous</button>
+                        <button class="btn btn-primary"   style="margin-left: 10px"  matStepperNext>next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-step>
+
+
+    <mat-step >
+        <ng-template  matStepLabel></ng-template>
+        <h1 style="text-align: center">Formations</h1>
+        <hr>
+        <form class="example-form" (ngSubmit)="ajoutFormation(form1)" #form1="ngForm">
+            <div class="form-group" style="text-align: left">
+                <mat-form-field appearance="outline" style="width: 140px">
+                    <mat-label>Diplome</mat-label>
+                    <input matInput placeholder="diplome" name="diplome"
+                           [(ngModel)]="formul.diplome" required/>
+                    <mat-icon matSuffix>diplome</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline"  style="margin-left: 10px;width: 140px">
+                    <mat-label>Université</mat-label>
+                    <input matInput placeholder="Université/Ecole"
+                           name="univ" [(ngModel)]="formul.univ" required>
+                    <mat-icon matSuffix>shcoll</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline"  style="margin-left: 10px;width: 140px">
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" placeholder="date"
+                           name="date" [(ngModel)]="formul.date">
+                </mat-form-field>
+
+                <button mat-icon-button matTooltip="Ajouter une formation">
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+                <div>
+                </div>
+            </div>
+        </form>
+
+        <div style="display: flex;flex-wrap: wrap;">
+            <mat-card style="margin-top: -30px;margin-bottom: 40px; width: 440px;" *ngFor="let o of cv.formations">
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                    <mat-card-title style="color: #3f51b4;text-transform: uppercase;">
+                        <div>{{o.diplome}}</div>
+                        <div style="margin-top: 10px">{{o.univ}}</div>
+                        <div style="margin-top: 10px">{{o.date}}</div>
+                    </mat-card-title>
+
+                    <div style="display: flex; align-items: center">
+                        <button mat-icon-button matTooltip="Supprimer" (click)=" supprimerFormation(o.diplome)">
+                            <mat-icon color="primary"><span class="material-symbols-outlined">delete</span>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div>
+
+            <button class="btn btn-primary" matStepperPrevious>previous</button>
+            <button class="btn btn-primary" style="margin-left: 10px"   matStepperNext>next</button>
+        </div>
+    </mat-step>
+    <mat-step >
+        <ng-template  matStepLabel></ng-template>
+        <h1 style="text-align: center">Expériences Professionnelles</h1>
+        <hr>
+        <form class="example-form"  (ngSubmit)="ajoutExperience(form3)" #form3="ngForm">
+            <div class="form-group" style="text-align: left">
+                <mat-form-field appearance="outline" style="width: 140px">
+                    <mat-label>Poste</mat-label>
+                    <input matInput placeholder="Exple.stagiaire "  name="poste"
+                           [(ngModel)]="exp.poste" required/>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline"  style="margin-left: 10px;width: 140px">
+                    <mat-label>Entreprise</mat-label>
+                    <input matInput  name="entreprise" [(ngModel)]="exp.entreprise" required/>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline"  style="margin-left: 10px;width: 140px">
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date"
+                           name="dates" [(ngModel)]="exp.dates" required/>
+                </mat-form-field>
+
+                <button mat-icon-button matTooltip="Ajouter une expérience">
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+                <div>
+                </div>
+            </div>
+        </form>
+
+
+
+        <div style="display: flex;flex-wrap: wrap;">
+            <mat-card style="margin-top: -30px;margin-bottom: 40px; width: 440px;" *ngFor="let g of cv.experiences">
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                    <mat-card-title style="color: #3f51b4;text-transform: uppercase">
+                        <div >{{g.poste}}</div>
+                        <div style="margin-top: 10px">{{g.entreprise}}</div>
+                        <div style="margin-top: 10px">{{g.dates}}</div>
+                    </mat-card-title>
+                    <div style="display: flex; align-items: center">
+                        <button mat-icon-button matTooltip="Supprimer" (click)=" supprimerExperience(g.poste)">
+                            <mat-icon color="primary"><span class="material-symbols-outlined">delete</span>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div>
+            <button class="btn btn-primary"  matStepperPrevious>previous</button>
+            <button class="btn btn-primary" style="margin-left: 10px"   matStepperNext>next</button>
+        </div>
+    </mat-step>
+    <mat-step >
+        <ng-template  matStepLabel></ng-template>
+        <h1 style="text-align: center">Compétences et Loisirs</h1>
+        <hr>
+        <form (ngSubmit)="ajoutCompetance(comp)" #comp="ngForm" class="example-form"
+              style="display: flex;align-items: center">
+
+            <div class="form-group" style="text-align: left">
+                <mat-form-field appearance="outline" style="width: 430px">
+                    <mat-label >Compétence</mat-label>
+                    <input matInput  name="nom"  placeholder="nom"
+                           name="cptc" [(ngModel)]="cptc.nom">
+                </mat-form-field>
+
+                <button mat-icon-button id="cc" type="submit" matTooltip="Ajouter une compétence">
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+            </div>
+        </form>
+
+        <div style="display: flex;flex-wrap: wrap;margin-top: -70px" *ngFor="let c of cv.competences">
+            <mat-card style="margin: 39px; width: 350px;">
+                <div style="display: flex; align-items: center; justify-content: space-between">
+                    <mat-card-title style="color: #3f51b4;text-transform: uppercase">{{c.nom}}</mat-card-title>
+                    <div style="display: flex; align-items: center">
+                        <button mat-icon-button matTooltip="Supprimer" (click)=" supprimer(c.nom)">
+                            <mat-icon color="primary"><span class="material-symbols-outlined">delete</span>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </mat-card>
+
+        </div>
+
+        <form class="example-form" (ngSubmit)="ajoutLoisir(lois)" #lois="ngForm"
+              style="display: flex;align-items: center">
+            <div class="form-group" style="text-align: left">
+                <mat-form-field appearance="outline" style="width: 430px;margin-top: -65px">
+                    <mat-label >Loisir</mat-label>
+                    <input matInput   name="loi" placeholder="Exple.sport.."
+                           [(ngModel)]="loi.nom"  >
+                </mat-form-field>
+                <button mat-icon-button id="c" matTooltip="Ajouter une loisir">
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+            </div>
+        </form>
+
+        <div style="display: flex;flex-wrap: wrap;margin-top: -70px" *ngFor="let x of cv.loisirs">
+            <mat-card style="margin: 39px; width: 350px;">
+                <div >
+                    <mat-card-title style="color: #3f51b4;text-transform: uppercase;">{{x.nom}}</mat-card-title>
+                    <div style="display: flex; align-items: center">
+                        <button mat-icon-button matTooltip="Supprimer" (click)=" supprimerLoisir(x.nom)">
+                            <mat-icon color="primary"><span class="material-symbols-outlined">delete</span>
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+        <div>
+            <button class="btn btn-primary"  matStepperPrevious>previous</button>
+            <button class="btn btn-primary" style="margin-left: 10px"   (click)=" openDialogcv(cv)">confirmer</button>
+        </div>
+
+    </mat-step>
+
+
+
+
+
+</mat-horizontal-stepper>

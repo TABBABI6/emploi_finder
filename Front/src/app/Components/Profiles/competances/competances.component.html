@@ -1,0 +1,40 @@
+<mat-card style="width: 750px; margin: 10px">
+    <mat-card-title style="display: flex; justify-content: space-between; align-items: center">
+        Compétences
+        <button mat-icon-button (click)="addComp()" matTooltip="Ajouter une compétance" *ngIf="isLogedIn() && proprietaireCompte()">
+            <span class="material-symbols-outlined">add_circle</span>
+        </button>
+    </mat-card-title>
+
+
+    <form class="example-form" #addForm="ngForm" (ngSubmit)="addCompetance(addForm)" *ngIf="addcompetances" style="display: flex;align-items: center; margin-bottom: 10px">
+
+        <input placeholder="Compétance" style="width: 200px" id="changeHourStep" class="form-control form-control-sm" name="nom" [(ngModel)]="competance.nom" required/>
+
+        <section class="example-section" style="margin-left: 10px">
+            <label class="example-margin">Niveau:</label>
+            <mat-slider class="example-margin" color="primary" name="niveau" [(ngModel)]="competance.niveau"></mat-slider>
+            <b style="color:#3f51b4;">{{competance.niveau}}/100</b>
+        </section>
+
+        <button mat-icon-button [disabled]="addForm.invalid" type="submit">
+            <span class="material-symbols-outlined">check_circle</span>
+        </button>
+    </form>
+
+    <mat-card style="margin: 5px" *ngFor="let competance of candidatCompetances">
+        <div style="display: flex; align-items: center;justify-content: space-between">
+            <mat-card-title style="color: #3f51b4;text-transform: uppercase;">{{competance.nom}}</mat-card-title>
+            <div style="display: flex; align-items: center" *ngIf="isLogedIn() && proprietaireCompte()">
+                <button mat-icon-button (click)="validerSuppression(competance.id)" matTooltip="Supprimer">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                </button>
+                <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                <button mat-icon-button matTooltip="Modifier" (click)="modifier(competance.id)">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                </button>
+            </div>
+        </div>
+        <mat-progress-bar mode="determinate" color="primary" value="{{competance.niveau}}"></mat-progress-bar>
+    </mat-card>
+</mat-card>

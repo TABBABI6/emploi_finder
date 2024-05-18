@@ -1,0 +1,281 @@
+<div class="container tb-10" style="margin-top: 30px;width: 700px" >
+    <form (ngSubmit)="submit()" #form="ngForm" >
+
+        <div   *ngIf="step == 1" >
+
+            <h1 style="color: #3f51b4">User Détails</h1>
+            <div class="form-group">
+
+                <label for="nom">Nom</label>
+                <input type="nom" class="form-control" name="nom" id="nom" placeholder="nom" [(ngModel)]="cv.nom">
+                <label for="nom">Prénom</label>
+                <input type="nom" class="form-control" name="prenom" id="prenom" placeholder="prenom" [(ngModel)]="cv.prenom">
+                <label for="nom">Titre Professionnel</label>
+                <input type="nom" class="form-control" id="poste"  name="titre_professionnel" placeholder="titre" [(ngModel)]="cv.titre_professionnel">
+                <label for="fichier">Image</label>
+                <input type="file" class="form-control-file" id="fichier" (change)="onFileSelected($event)" name="image">
+                <img id="blah" [src]="imageSrc"/>
+
+            </div>
+        </div>
+
+
+
+
+        <div   *ngIf="step == 2" >
+            <h1 style="color: #3f51b4">Contact Détails</h1>
+            <div class="form-group">
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="add">Adresse</label>
+                        <input type="text" id="add"  class="form-control" name="adresse "placeholder="adresse" [(ngModel)]="cv.adresse">
+                    </div>
+                    <div class="col">
+                        <label for="num">Télephone</label>
+                        <input type="number"  id="num" class="form-control" name="num_tel" placeholder="numéro" [(ngModel)]="cv.num_tel">
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="date">Date de naissance</label>
+                        <input type="date"  id="date" class="form-control" name="date_naissance" placeholder="date-naissance" [(ngModel)]="cv.date_naissance">
+                    </div>
+                    <div class="col">
+                        <label for="mail">Mail</label>
+                        <input type="mail" id="mail" class="form-control" name="mail" placeholder="example@gmail.com " [(ngModel)]="cv.mail">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="permis">Permis</label>
+                        <input type="text"  id="permis" class="form-control" name=" permis"placeholder="permis" [(ngModel)]="cv.permis">
+                    </div>
+                    <div class="col">
+                        <label for="profil">Profil</label>
+                        <textarea type="text" id="profil" class="form-control"name="description" placeholder="description" [(ngModel)]="cv.description"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div  *ngIf="step == 3">
+
+            <mat-card-title style="display: flex; justify-content: space-between;color: #3f51b4" >
+                Formations
+                <button mat-icon-button  matTooltip="Ajouter une formation"  >
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+            </mat-card-title>
+
+            <form class="example-form" #addFormation="ngForm"   style="display: flex;align-items: center;margin-bottom: 10px">
+
+                <input placeholder="diplome" style="width: 200px" class="form-control form-control-sm" name="diplome" [(ngModel)]="cv.diplome"  required/>
+
+                <input placeholder="université" style="width: 200px; margin-left: 10px" class="form-control form-control-sm" name="universite" [(ngModel)]="cv.universite" required/>
+
+                <input type="date" style="width: 200px; margin-left: 10px" class="form-control form-control-sm" name="date" [(ngModel)]="cv.date" required/>
+
+                <button mat-icon-button  type="submit">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </button>
+
+            </form>
+
+            <div style="display: flex;flex-wrap: wrap;">
+                <mat-card style="margin: 5px; width: 229px;"  >
+                    <div style="display: flex; align-items: center; justify-content: space-between">
+                        <mat-card-title style="color: #3f51b4;text-transform: uppercase;"></mat-card-title>
+                        <div style="display: flex; align-items: center" >
+                            <button mat-icon-button matTooltip="Supprimer">
+                                <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                            </button>
+                            <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                            <button mat-icon-button matTooltip="Modifier" >
+                                <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <mat-card-subtitle></mat-card-subtitle>
+                    <p style="text-transform: capitalize;"></p>
+                </mat-card>
+            </div>
+
+
+        </div>
+
+
+        <div  *ngIf="step == 4">
+            <mat-card-title style="display: flex; justify-content: space-between;color: #3f51b4">
+                Expériences Professionnelles
+                <button mat-icon-button  matTooltip="Ajouter une experience" >
+                    <span class="material-symbols-outlined">add_circle</span>
+                </button>
+            </mat-card-title>
+
+            <form class="example-form" #addFormation="ngForm"   style="display: flex;align-items: center;margin-bottom: 10px">
+
+                <input placeholder="poste" style="width: 200px" class="form-control form-control-sm" name="poste"  [(ngModel)]="cv.poste" required/>
+
+                <input placeholder="société" style="width: 200px; margin-left: 10px" class="form-control form-control-sm" name="entreprise" [(ngModel)]="cv.entreprise" required/>
+
+                <input type="date" style="width: 200px; margin-left: 10px" class="form-control form-control-sm" name="date" [(ngModel)]="cv.date" required/>
+
+
+            </form>
+
+            <div style="display: flex;flex-wrap: wrap;">
+                <mat-card style="margin: 5px; width: 229px;"  >
+                    <div style="display: flex; align-items: center; justify-content: space-between">
+                        <mat-card-title style="color: #3f51b4;text-transform: uppercase" >{{cv.poste}} </mat-card-title>
+                        <div style="display: flex; align-items: center" >
+                            <button mat-icon-button matTooltip="Supprimer">
+                                <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                            </button>
+                            <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                            <button mat-icon-button matTooltip="Modifier" >
+                                <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <mat-card-subtitle></mat-card-subtitle>
+                    <p style="text-transform: capitalize;"></p>
+                </mat-card>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div  *ngIf="step == 5">
+            <div class="form-group">
+
+
+
+                <mat-card-title style="display: flex; justify-content: space-between;color: #3f51b4">
+                    Compétences
+                </mat-card-title>
+
+                <form (ngSubmit)="ajoutCompetance(comp)" #comp="ngForm" class="example-form" style="display: flex;align-items: center;margin-bottom: 10px">
+
+                    <input placeholder="compéténce"  style="width: 200px" class="form-control form-control-sm" name="cptc" [(ngModel)]="cptc.nom"/>
+                    <button mat-icon-button  id="cc" type="submit" matTooltip="Ajouter une compétence"  >
+                        <span class="material-symbols-outlined">add_circle</span>
+                    </button>
+
+                </form>
+
+                <div style="display: flex;flex-wrap: wrap;" *ngFor="let c of cv.competences">
+                    <mat-card style="margin: 5px; width: 229px;"  >
+                        <div style="display: flex; align-items: center; justify-content: space-between">
+                            <mat-card-title style="color: #3f51b4;text-transform: uppercase">{{c.nom}}</mat-card-title>
+                            <div style="display: flex; align-items: center" >
+                                <button mat-icon-button matTooltip="Supprimer"  (click)=" supprimer(c.nom)">
+                                    <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                                </button>
+                                <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                                <button mat-icon-button matTooltip="Modifier" >
+                                    <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <mat-card-subtitle></mat-card-subtitle>
+                        <p style="text-transform: capitalize;"></p>
+                    </mat-card>
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+        <div  *ngIf="step == 6">
+            <div class="form-group">
+
+
+
+                <mat-card-title style="display: flex; justify-content: space-between;color: #3f51b4">
+                    Loisirs
+                    <button mat-icon-button id="c" matTooltip="Ajouter une loisir"  >
+                        <span class="material-symbols-outlined">add_circle</span>
+                    </button>
+                </mat-card-title>
+
+                <form class="example-form" #addFormation="ngForm"   style="display: flex;align-items: center;margin-bottom: 10px">
+
+                    <input placeholder="loisirs" style="width: 200px" class="form-control form-control-sm" name="loisirs" [(ngModel)]="cv.loisirs" required/>
+
+
+
+                </form>
+
+                <div style="display: flex;flex-wrap: wrap;">
+                    <mat-card style="margin: 5px; width: 229px;"  >
+                        <div style="display: flex; align-items: center; justify-content: space-between">
+                            <mat-card-title style="color: #3f51b4;text-transform: uppercase;"></mat-card-title>
+                            <div style="display: flex; align-items: center" >
+                                <button mat-icon-button matTooltip="Supprimer">
+                                    <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                                </button>
+                                <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px;"></div>
+                                <button mat-icon-button matTooltip="Modifier" >
+                                    <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <mat-card-subtitle></mat-card-subtitle>
+                        <p style="text-transform: capitalize;"></p>
+                    </mat-card>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="form-group">
+
+            <a class="btn btn-primary mx-2" *ngIf="step != 1" (click)="back()" >Back</a>
+            <button type="submit" class="btn btn-primary mx-2" *ngIf="step != 6" >Next</button>
+            <button  type="submit" class="btn btn-primary mx-2" *ngIf="step == 6" (click)=" openDialogcv(cv)" mat-dialog-close>Submit</button>
+        </div>
+    </form>
+</div>
+

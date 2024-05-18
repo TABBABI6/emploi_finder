@@ -1,0 +1,17 @@
+<div style="display: flex; align-items: center; justify-content: space-between">
+    <h4 class="modal-title" id="modal-title">Suppression d'offre</h4>
+    <button mat-dialog-close type="button" class="btn-close" aria-label="Close button" aria-describedby="modal-title"></button>
+</div>
+<div class="modal-body">
+    <p>
+        <strong>Êtes-vous sûr de vouloir supprimer cette Offre?</strong>
+    </p>
+    <p>
+        Toutes les informations associées à cette offre seront définitivement supprimées.
+        <span class="text-danger">Cette opération ne peut pas être annulée.</span>
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" mat-dialog-close>Annuler</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="deleteOffre(data.id)">Valider</button>
+</div>

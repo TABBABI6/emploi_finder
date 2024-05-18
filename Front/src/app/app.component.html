@@ -1,0 +1,9 @@
+<app-nav-bar></app-nav-bar>
+<div class="center"><router-outlet></router-outlet></div>
+<!--<app-login *ngIf="! isLogedIn() && router.url!='/user-add'"></app-login>-->
+<app-acceuil *ngIf="router.url =='/'"></app-acceuil>
+<app-afficher-offres class="center" *ngIf="router.url =='/'"></app-afficher-offres>
+<!--<app-test></app-test>-->
+<!--<app-offres-rechercher [item]="currentItem"></app-offres-rechercher>-->
+<app-footer *ngIf="role != 'Admin'"></app-footer>
+

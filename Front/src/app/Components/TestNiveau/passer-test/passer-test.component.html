@@ -1,0 +1,16 @@
+<div style="display: flex; align-items: center; justify-content: space-between">
+    <h1 class="modal-title" id="modal-title">Test: {{data.test.titre}}</h1>
+</div>
+<div class="modal-body">
+    <p>
+        <strong>Vous dever passer ce test dans une durée maximale de {{data.test.duree}}h</strong>
+    </p>
+    <p>
+        Cliquer sur Valider pour poursuivre vers la page du test.<span class="text-danger">Attention le compteur ce déclenche<br> dès que vous cliquer sur Valider</span>
+
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" mat-dialog-close>Annuler</button>
+    <button type="button" ngbAutofocus mat-dialog-close class="btn btn-danger" (click)="ouvrirtest()">Valider</button>
+</div>

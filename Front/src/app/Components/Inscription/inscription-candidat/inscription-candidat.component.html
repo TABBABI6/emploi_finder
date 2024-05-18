@@ -1,0 +1,80 @@
+<form class="example-form" #addForm="ngForm" (ngSubmit)="addCondidat(addForm)">
+
+    <table>
+        <tr>
+            <td style="text-align: left">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input matInput [(ngModel)]="candidat.nom" name="nom" ngModel required>
+                </mat-form-field>
+            </td>
+            <td style="text-align: right">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Prénom</mat-label>
+                    <input matInput [(ngModel)]="candidat.prenom" name="prenom" ngModel required>
+                </mat-form-field>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align: left">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Date de naissance</mat-label>
+                    <input matInput [(ngModel)]="candidat.date_naissance" type="date" name="date_naissance" ngModel required>
+                </mat-form-field>
+            </td>
+            <td style="text-align: right">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Mail</mat-label>
+                    <input matInput [(ngModel)]="candidat.mail" name="mail" ngModel required>
+                </mat-form-field>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align: left">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput [(ngModel)]="candidat.mdp" type="password" name="mdp" ngModel required>
+                </mat-form-field>
+            </td>
+
+            <td style="text-align: right">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>adresse</mat-label>
+                    <input matInput [(ngModel)]="candidat.adresse" name="adresse" ngModel required>
+                </mat-form-field>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align: left">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Fonction</mat-label>
+                    <input matInput [(ngModel)]="candidat.fonction" name="fonction" ngModel required>
+                </mat-form-field>
+            </td>
+
+            <td style="text-align: center; width: 200px;">
+                <label id="lab" for="inputTag">
+                    <span class="material-symbols-outlined">add_photo_alternate</span><br>
+                    Choisir une Image de profile
+                    <input id="inputTag" type="file" required name="image" value="Ajout" accept="image/*" (change)="onFileSelected($event)">
+                </label>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td colspan="2" style="text-align: center; width: 500px; padding-top: 10px">
+                <mat-card-actions>
+                    <button mat-flat-button color="primary" [disabled]="addForm.invalid" type="submit">Confirmer</button>
+                    <button mat-flat-button mat-dialog-close color="primary" style="margin-left: 30px">Annuler</button>
+                </mat-card-actions>
+            </td>
+
+        </tr>
+    </table>
+</form>

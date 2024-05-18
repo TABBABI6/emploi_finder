@@ -1,0 +1,56 @@
+<div style="text-align: center;width: 800px;">
+    <div  *ngIf="OffresPublic.length==0" style="margin: auto;width: 600px; height: 400px; text-align: center">
+        <mat-spinner style="margin-left: 250px;margin-top: 100px"></mat-spinner><br>
+        <mat-card-title style="color:#3f51b4;">Chargement...</mat-card-title>
+    </div>
+
+
+    <div class="maincontainer" style="margin: 20px;cursor: pointer" *ngFor="let offrePublic of OffresPublic | paginate: {id: 'kj',itemsPerPage: 4, currentPage: p}"
+         (click)="visiter(offrePublic.link)">
+        <div class="thecard">
+            <mat-card class="thefront">
+                <mat-card-header style="margin-top: 10px;display: flex; align-items: center;">
+                    <mat-card-title>
+                        <img alt=" " [src]="offrePublic.image" style="width: 100px; height: 100px; border-radius: 50%">
+                    </mat-card-title>
+                    <div>
+                        <mat-card-title style="color: #3f51b4; font-weight: bold">{{offrePublic.title}}</mat-card-title>
+                    </div>
+                </mat-card-header>
+                <mat-card-content style="font-size: 20px;">
+                    <div style="display: flex;justify-content: center">
+                        <p style="font-weight: bold">{{offrePublic.company}}</p>
+                        <div style="border-left: 1.5px solid rgb(0,0,0);margin-right: 10px;margin-left: 10px; height: 20px;"></div>
+                        <p style="color: #818181">{{offrePublic.sector}}</p>
+                    </div><br>
+                    <div style="display: flex;align-items: center;justify-content: center">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                        {{offrePublic.location}}
+                        <div style="display: flex;align-items: center;">
+                            <mat-icon color="primary" style="margin-left: 20px" *ngIf="offrePublic.type != null ">
+                                <span class="material-symbols-outlined">description</span>
+                            </mat-icon>
+                            {{offrePublic.type}}
+                        </div>
+                        <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                        {{offrePublic.availablity}}
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+
+            <mat-card class="theback">
+                <p>{{offrePublic.description}}</p>
+            </mat-card>
+        </div>
+
+    </div>
+
+    <pagination-controls (pageChange)="p = $event" id="kj"></pagination-controls>
+
+</div>
+
+
+
+
+

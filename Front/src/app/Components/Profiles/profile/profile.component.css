@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 220px;
+}
+
+td{
+    width: 200px;
+}
+.inputTag{
+    display: none;
+}
+.lab{
+    cursor: pointer;
+}

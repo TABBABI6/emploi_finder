@@ -1,0 +1,240 @@
+<mat-card style="margin: 100px 10px 10px;">
+    <mat-card-title style="color: #3f51b4; display: flex; align-items: center; justify-content: space-between">
+        Offres
+        <button mat-icon-button (click)="activerRecherche()" matTooltip="Recherche Avancée"><span class="material-symbols-outlined">search</span></button>
+    </mat-card-title>
+    <mat-divider inset></mat-divider>
+
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Nos offres">
+                <form class="example-form" #rechercheForm="ngForm" (ngSubmit)="chercher(rechercheForm)" *ngIf="recherche == true">
+                    <table>
+                        <tr>
+                            <td>
+                                <mat-slide-toggle
+                                        color="primary"
+                                        class="example-margin"
+                                        [checked]="checked"
+                                        (click)="rechercheByTitre()">
+                                    Par Titre
+                                </mat-slide-toggle>
+                            </td>
+                            <td>
+                                <div *ngIf="rechercheParTitre">
+                                    <input required id="rechercheParTitre" type="text" class="form-control" [(ngModel)]="titre" [ngbTypeahead]="searchbytitre" [resultFormatter]="formatter" name="titre"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-slide-toggle
+                                        color="primary"
+                                        class="example-margin"
+                                        [checked]="checked"
+                                        (click)="rechercheByLieu()">
+                                    Par Lieu
+                                </mat-slide-toggle>
+                            </td>
+                            <td>
+                                <div *ngIf="rechercheParLieu">
+                                    <input required id="rechercheParLieu" type="text" class="form-control" [(ngModel)]="lieu" [ngbTypeahead]="searchbylieu" [resultFormatter]="formatter" name="titre"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-slide-toggle
+                                        color="primary"
+                                        class="example-margin"
+                                        [checked]="checked"
+                                        (click)="rechercheByDomaine()">
+                                    Par secteurs d'activité
+                                </mat-slide-toggle>
+                            </td>
+                            <td>
+                                <div *ngIf="rechercheParDomaine">
+                                    <select  class="form-control" name="domaine" [(ngModel)]="domaine" required>
+                                        <option value="aéronautique / aviation / voyagiste">aéronautique / aviation / voyagiste</option>
+                                        <option value="agriculture / agro-alimentaire / environnement">agriculture / agro-alimentaire / environnement</option>
+                                        <option value="architecture / immobilier / BTP">architecture / immobilier / BTP</option>
+                                        <option value="artisanat / textile / cuir">artisanat / textile / cuir</option>
+                                        <option value="automobile / moteurs / engins mécaniques">automobile / moteurs / engins mécaniques</option>
+                                        <option value="banque / finance / assurances">banque / finance / assurances</option>
+                                        <option value="call center / télévente">call center / télévente</option>
+                                        <option value="chimie / biologie / physique">chimie / biologie / physique</option>
+                                        <option value="commerce / vente / distribution">commerce / vente / distribution</option>
+                                        <option value="communication / publicité / média">communication / publicité / média</option>
+                                        <option value="comptabilité / gestion / audit">comptabilité / gestion / audit</option>
+                                        <option value="consulting / étude / stratégie">consulting / étude / stratégie</option>
+                                        <option value="cosmétique / parfumerie / luxe">cosmétique / parfumerie / luxe</option>
+                                        <option value="culture / audiovisuel">culture / audiovisuel</option>
+                                        <option value="droit / fiscalité">droit / fiscalité</option>
+                                        <option value="électronique / électricité / énergie">électronique / électricité / énergie</option>
+                                        <option value="enseignement / formation / puériculture">enseignement / formation / puériculture</option>
+                                        <option value="fonction publique / collectivités locales">fonction publique / collectivités locales</option>
+                                        <option value="gardiennage / sécurité / maintenance">gardiennage / sécurité / maintenance</option>
+                                        <option value="import / export">import / export</option>
+                                        <option value="industrie électro-mécaniques">industrie électro-mécaniques</option>
+                                        <option value="industrie métalliques">industrie métalliques</option>
+                                        <option value="informatique / télécoms">informatique / télécoms</option>
+                                        <option value="journalisme / traduction / édition">journalisme / traduction / édition</option>
+                                        <option value="recrutement / ressources humaines">recrutement / ressources humaines</option>
+                                        <option value="santé / paramédical / optique">santé / paramédical / optique</option>
+                                        <option value="tourisme / hôtellerie / restauration / loisirs">tourisme / hôtellerie / restauration / loisirs</option>
+                                        <option value="transport / logistique">transport / logistique</option>
+                                        <option value="autres">autres</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button mat-flat-button color="primary" *ngIf="rechercheParTitre || rechercheParLieu || rechercheParDomaine" [disabled]="rechercheForm.invalid" type="submit">Chercher</button>
+                                <button style="margin-left: 10px" mat-flat-button color="primary" *ngIf="rechercheParTitre || rechercheParLieu || rechercheParDomaine" (click)="desactiverRecherche()">Annuler</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div style="width: 800px; margin-top: 50px" *ngIf="filtrer == true">
+                    <mat-card-title *ngIf="aucuneOffre && Offres.size == 0" style="margin-left: 300px">Acune offre trouvée</mat-card-title>
+
+                    <mat-card *ngFor="let offre of Offres | keyvalue" style="margin: 20px;cursor: pointer" (click)="getDetails(offre.key.id, offre.value.id)"
+                              class="example-ripple-container mat-elevation-z4"
+                              matRipple
+                              [matRippleCentered]="centered"
+                              [matRippleDisabled]="disabled"
+                              [matRippleUnbounded]="unbounded">
+                        <mat-card-header style="margin-top: 10px;display: flex; align-items: center;">
+                            <mat-card-title><img [src]="offre.value.image.url" style="width: 100px; height: 100px; border-radius: 50%"></mat-card-title>
+                            <div>
+                                <mat-card-title style="color: #3f51b4; font-weight: bold">{{offre.key.titre}}</mat-card-title>
+                                <mat-card-subtitle>Valable jusqu'au: {{offre.key.date_expiration}}</mat-card-subtitle>
+                            </div>
+                        </mat-card-header>
+                        <mat-card-content style="font-size: 20px;padding-left: 135px">
+                            <div style="display: flex;">
+                                <p style="font-weight: bold">{{offre.value.prenom}} {{offre.value.nom}}</p>
+                                <div style="border-left: 1.5px solid rgb(0,0,0);margin-right: 10px;margin-left: 10px; height: 20px;"></div>
+                                <p style="color: #818181">{{offre.key.domaine}}</p>
+                            </div><br>
+                            <div style="display: flex;align-items: center;">
+                                <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                                {{offre.key.lieu.toUpperCase()}}
+                                <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">description</span></mat-icon>
+                                {{offre.key.type_poste}}
+                                <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                                {{offre.key.disponibilite}}
+                            </div>
+                        </mat-card-content>
+                        <mat-divider inset></mat-divider>
+                        <mat-card-footer>
+                            <mat-card-subtitle style="display: flex; align-items: center;margin-left: 15px;margin-top: 5px;margin-bottom: 5px">
+                                <span class="material-symbols-outlined" style="margin-right: 5px">schedule</span>{{offre.key.date_ajout}}
+                            </mat-card-subtitle>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+                <div style="width: 800px; margin-top: 50px; text-align: center" *ngIf="filtrer == false">
+                    <mat-card *ngFor="let offre of Offres | keyvalue | paginate: { id: 'no',itemsPerPage: 4, currentPage: p }" style="margin: 20px;cursor: pointer" (click)="getDetails(offre.key.id, offre.value.id)"
+                              class="example-ripple-container mat-elevation-z4"
+                              matRipple
+                              [matRippleCentered]="centered"
+                              [matRippleDisabled]="disabled"
+                              [matRippleUnbounded]="unbounded">
+                        <mat-card-header style="margin-top: 10px;display: flex; align-items: center;">
+                            <mat-card-title><img [src]="offre.value.image.url" style="width: 100px; height: 100px; border-radius: 50%"></mat-card-title>
+                            <div>
+                                <mat-card-title style="color: #3f51b4; font-weight: bold">{{offre.key.titre}}</mat-card-title>
+                                <mat-card-subtitle>Valable jusqu'au: {{offre.key.date_expiration}}</mat-card-subtitle>
+                            </div>
+                        </mat-card-header>
+                        <mat-card-content style="font-size: 20px;padding-left: 135px">
+                            <div style="display: flex;">
+                                <p style="font-weight: bold">{{offre.value.prenom}} {{offre.value.nom}}</p>
+                                <div style="border-left: 1.5px solid rgb(0,0,0);margin-right: 10px;margin-left: 10px; height: 20px;"></div>
+                                <p style="color: #818181">{{offre.key.domaine}}</p>
+                            </div><br>
+                            <div style="display: flex;align-items: center;">
+                                <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                                {{offre.key.lieu.toUpperCase()}}
+                                <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">description</span></mat-icon>
+                                {{offre.key.type_poste}}
+                                <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                                {{offre.key.disponibilite}}
+                            </div>
+                        </mat-card-content>
+                        <mat-divider inset></mat-divider>
+                        <mat-card-footer>
+                            <mat-card-subtitle style="display: flex; align-items: center;margin-left: 15px;margin-top: 5px;margin-bottom: 5px">
+                                <span class="material-symbols-outlined" style="margin-right: 5px">schedule</span>{{offre.key.date_ajout}}
+                            </mat-card-subtitle>
+                        </mat-card-footer>
+                    </mat-card>
+                    <pagination-controls (pageChange)="p = $event" id="no" *ngIf="Offres.size>4"></pagination-controls>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Keejob">
+                <app-afficher-offres-public></app-afficher-offres-public>
+            </mat-tab>
+            app-afficher-offres-linkedin
+            <mat-tab label="Option Carrier">
+                <app-afficher-offres-option-carrier></app-afficher-offres-option-carrier>
+            </mat-tab>
+
+            <mat-tab label="Linkedin">
+                <app-afficher-offres-linkedin></app-afficher-offres-linkedin>
+            </mat-tab>
+
+            <mat-tab label="Offres Recommandées" *ngIf="role == 'Condidat'">
+                <app-offres-recommander></app-offres-recommander>
+            </mat-tab>
+
+        </mat-tab-group>
+
+
+
+
+
+
+
+   <!--<div style="width: 800px; margin-top: 50px" *ngIf="filtrer == false">
+        <mat-card *ngFor="let offre of Offres | keyvalue" style="margin: 20px;cursor: pointer" (click)="getDetails(offre.key.id, offre.value.id)"
+                  class="example-ripple-container mat-elevation-z4"
+                  matRipple
+                  [matRippleCentered]="centered"
+                  [matRippleDisabled]="disabled"
+                  [matRippleUnbounded]="unbounded">
+            <mat-card-header style="margin-top: 10px;display: flex; align-items: center;">
+                <mat-card-title><img [src]="offre.value.image.url" style="width: 100px; height: 100px; border-radius: 50%"></mat-card-title>
+                <div>
+                    <mat-card-title style="color: #3f51b4; font-weight: bold">{{offre.key.titre}}</mat-card-title>
+                    <mat-card-subtitle>Valable jusqu'au: {{offre.key.date_expiration}}</mat-card-subtitle>
+                </div>
+            </mat-card-header>
+            <mat-card-content style="font-size: 20px;padding-left: 135px">
+                <div style="display: flex;">
+                    <p style="font-weight: bold">{{offre.value.prenom}} {{offre.value.nom}}</p>
+                    <div style="border-left: 1.5px solid rgb(0,0,0);margin-right: 10px;margin-left: 10px; height: 20px;"></div>
+                    <p style="color: #818181">{{offre.key.domaine}}</p>
+                </div><br>
+                <div style="display: flex;align-items: center;">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">location_on</span></mat-icon>
+                    {{offre.key.lieu.toUpperCase()}}
+                    <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">description</span></mat-icon>
+                    {{offre.key.type_poste}}
+                    <mat-icon color="primary" style="margin-left: 20px"><span class="material-symbols-outlined">schedule</span></mat-icon>
+                    {{offre.key.disponibilite}}
+                </div>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-footer>
+                <mat-card-subtitle style="display: flex; align-items: center;margin-left: 15px;margin-top: 5px;margin-bottom: 5px">
+                    <span class="material-symbols-outlined" style="margin-right: 5px">schedule</span>{{offre.key.date_ajout}}
+                </mat-card-subtitle>
+            </mat-card-footer>
+        </mat-card>
+        <app-afficher-offres-public></app-afficher-offres-public>
+    </div>-->
+
+</mat-card>

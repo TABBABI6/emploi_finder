@@ -1,0 +1,9 @@
+#inputTag{
+    display: none;
+}
+#lab{
+    cursor: pointer;
+}
+mat-form-field{
+    width: 240px;
+}

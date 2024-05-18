@@ -1,0 +1,116 @@
+<mat-card style="width: 800px; margin-top: 100px; text-align: center">
+    <mat-card-title style="display: flex; justify-content: space-between; align-items: center;">
+        <div></div>
+        Articles
+        <button mat-icon-button (click)="ajoutArticle()" matTooltip="Ajouter une article">
+            <span class="material-symbols-outlined">add_circle</span>
+        </button>
+    </mat-card-title>
+
+    <form class="example-form" #addArticles="ngForm" (ngSubmit)="addArticle(addArticles)" *ngIf="addarticle"
+          style="display: flex;flex-wrap: wrap; padding: 20px; width: 820px;">
+
+
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Titre article</mat-label>
+            <textarea matInput placeholder="titre article" name="titre" [(ngModel)]="article.titre"></textarea>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin-left: 10px" >
+            <mat-label>Description</mat-label>
+            <textarea type="date" matInput placeholder="description" name="description"
+                      [(ngModel)]="article.description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Sous-Titre1</mat-label>
+            <textarea matInput placeholder="titre1" name="sous_titre1" [(ngModel)]="article.sous_titre1"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Description-Titre1</mat-label>
+            <textarea matInput placeholder="titre1" name="description1" [(ngModel)]="article.description1"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Sous-Titre2</mat-label>
+            <textarea matInput placeholder="titre1" name="sous_titre2" [(ngModel)]="article.sous_titre2"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Description-Titre2</mat-label>
+            <textarea matInput placeholder="description2" name="description2" [(ngModel)]="article.description2"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Sous-Titre3</mat-label>
+            <textarea matInput placeholder="titre3" name="sous_titre3" [(ngModel)]="article.sous_titre3"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Description-Titre3</mat-label>
+            <textarea matInput placeholder="description-titre3" name="description3"
+                      [(ngModel)]="article.description3"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Sous-Titre4</mat-label>
+            <textarea matInput placeholder="description-titre4" name="sous_titre4"
+                      [(ngModel)]="article.sous_titre4"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Description-Titre4</mat-label>
+            <textarea matInput placeholder="description-titre4" name="description4"
+                      [(ngModel)]="article.description4"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Sous-Titre5</mat-label>
+            <textarea matInput placeholder="titre5" name="sous_titre5" [(ngModel)]="article.sous_titre5"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px">
+            <mat-label>Description-Titre5</mat-label>
+            <textarea matInput placeholder="description-titre5" name="description5"
+                      [(ngModel)]="article.description5"></textarea>
+        </mat-form-field>
+
+        <div style="display: flex;align-items: center; justify-content: space-between; width: 100%; padding: 30px">
+            <label id="lab" for="inputTag">
+                <span class="material-symbols-outlined" style="margin-left: 40px">add_photo_alternate</span><br>
+                Choisir une Image
+                <input id="inputTag" type="file" required name="image" accept="image/*"
+                       (change)="onFileSelected($event)">
+            </label>
+            <div style="width: 200px;">
+                <button mat-flat-button color="primary" (click)="ajoutArticle()">Annuler</button>
+                <button style="margin-left: 10px" mat-flat-button color="primary" [disabled]="addArticles.invalid" type="submit">
+                    Ajouter
+                </button>
+            </div>
+        </div>
+    </form>
+    <div style="display: flex;flex-wrap: wrap">
+        <mat-card style="margin: 5px; width: 100%;height: max-content" *ngFor="let article of articles">
+            <mat-card-subtitle style="display: flex; justify-content: space-between; align-items: center">
+                <img [src]="article.image.url" style="width: 330px;height: 170px" alt="Card image cap">
+                <div style="display: flex; align-items: center;margin-top: 140px">
+                    <button mat-icon-button (click)="validerSuppression(article.id)" matTooltip="Supprimer">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">delete</span></mat-icon>
+                    </button>
+                    <div style="border-left: 2px solid rgba(194,194,194,0.67);  height: 20px"></div>
+                    <button mat-icon-button matTooltip="Modifier" (click)="modifier(article.id)">
+                        <mat-icon color="primary"><span class="material-symbols-outlined">edit</span></mat-icon>
+                    </button>
+                </div>
+            </mat-card-subtitle>
+            <mat-card-title style="font-size: 20px;color: #3e50b0">{{article.titre}}</mat-card-title>
+            <mat-card-content style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between">
+                <mat-card-title style="font-size: 15px;width: 620px">{{article.description}}</mat-card-title>
+            </mat-card-content>
+            <div style="width: 100%; display: flex; justify-content: right">
+                <button mat-icon-button
+                        matTooltip="Voir plus" (click)="getDetails(article.id)">
+                    <mat-icon color="primary"><span class="material-symbols-outlined">read_more</span></mat-icon>
+                </button>
+            </div>
+        </mat-card>
+    </div>
+
+</mat-card>
+
+

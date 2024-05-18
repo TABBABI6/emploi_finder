@@ -1,0 +1,35 @@
+.maincontainer{
+    position: relative;
+    width: 750px;
+    height: 300px;
+}
+.thecard{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    padding: 5px;
+}
+.thecard:hover{
+    transform: rotateY(180deg);
+}
+.thefront{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: #ffffff;
+}
+.theback{
+    position: absolute;
+    width: 100%;
+    height: 280px;
+    backface-visibility: hidden;
+    background: #fafafa;
+    transform: rotateY(180deg);
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 12px;
+}
